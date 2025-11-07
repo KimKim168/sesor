@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { LogoFooter } from './navbars/logoFooter';
 
 const footerSections = [
@@ -36,16 +36,17 @@ const footerSections = [
     { title: 'FAQs', mainLink: '/#faqs', links: [] },
 ];
 
-const followUs = [
-    { img: '/assets/sesor/links/facebook.png', link: 'https://www.facebook.com/SESORexpress' },
-    { img: '/assets/sesor/links/instagram.png', link: 'https://www.instagram.com/sesorexpress' },
-    { img: '/assets/sesor/links/tiktok.png', link: 'https://www.tiktok.com/@sesorexpress' },
-    { img: '/assets/sesor/links/telegram.png', link: 'https://t.me/sesorx' },
-    { img: '/assets/sesor/links/whatapp.png', link: 'https://wa.me/qr/O5P3YQECSVJNI1' },
-    { img: '/assets/sesor/links/linkedin.png', link: 'https://www.linkedin.com/company/sesor-express/' },
-];
+// const followUs = [
+//     { img: '/assets/sesor/links/facebook.png', link: 'https://www.facebook.com/SESORexpress' },
+//     { img: '/assets/sesor/links/instagram.png', link: 'https://www.instagram.com/sesorexpress' },
+//     { img: '/assets/sesor/links/tiktok.png', link: 'https://www.tiktok.com/@sesorexpress' },
+//     { img: '/assets/sesor/links/telegram.png', link: 'https://t.me/sesorx' },
+//     { img: '/assets/sesor/links/whatapp.png', link: 'https://wa.me/qr/O5P3YQECSVJNI1' },
+//     { img: '/assets/sesor/links/linkedin.png', link: 'https://www.linkedin.com/company/sesor-express/' },
+// ];
 
 const Footer = () => {
+const { media_links } = usePage<any>().props;
     return (
         <footer className="mt-10 bg-true-primary">
             <div className="section-container relative p-4 md:py-6 xl:px-0">
@@ -58,7 +59,7 @@ const Footer = () => {
 
                     {/* Footer Sections */}
                     {footerSections.map(({ title, links, mainLink }) => (
-                        <div key={title} className='ml-0 md:ml-5'>
+                        <div key={title} className="ml-0 md:ml-5">
                             <Link href={mainLink} className="font-manrope-bold text-[15px] text-primary-two hover:underline">
                                 {title}
                             </Link>
@@ -77,7 +78,7 @@ const Footer = () => {
                     ))}
                     <div>
                         <span className="font-manrope-bold text-[15px] text-primary-two hover:underline">Terms & Conditions</span>
-                        <ul className=" space-y-1">
+                        <ul className="space-y-1">
                             <li>
                                 <span className="font-manrope-light text-xs text-white hover:underline">©2025 SESOR Express</span>
                             </li>
@@ -90,17 +91,22 @@ const Footer = () => {
                     <div className="flex flex-col items-center lg:items-start">
                         <span className="mb-1 text-xs">Follow Us On</span>
                         <div className="mb-1 flex gap-1">
-                            {followUs.map((item, index) => (
-                                <a
-                                    key={index}
-                                    href={item.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="transition-transform hover:scale-110"
-                                >
-                                    <img src={item.img} alt="social icon" className="h-7 w-7 rounded border dark:border-white" />
-                                </a>
-                            ))}
+                            {media_links?.length > 0 &&
+                                media_links.map((item: any) => (
+                                    <a
+                                        key={item.id}
+                                        href={item?.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="transition-transform hover:scale-110"
+                                    >
+                                        <img
+                                            src={`/assets/images/links/thumb/${item.image}`}
+                                            alt={item?.title ?? 'social icon'}
+                                            className="h-7 w-7 rounded border dark:border-white"
+                                        />
+                                    </a>
+                                ))}
                         </div>
                         <span className="text-xs">Sesor Express</span>
                     </div>

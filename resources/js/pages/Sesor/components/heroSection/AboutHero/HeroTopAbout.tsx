@@ -1,6 +1,8 @@
 import { Button } from '@/components/ui/button';
+import { usePage } from '@inertiajs/react';
 
 const HeroTopAbout = () => {
+  const { whoWeAre } = usePage<any>().props;
   return (
     <div className="relative w-full max-w-[2000px] mx-auto" id='who-we-are'>
       {/* Background Image */}
@@ -23,27 +25,9 @@ const HeroTopAbout = () => {
           {/* Left Content */}
           <div className="flex flex-col max-w-[1100px] py-6 md:py-12 text-white">
             <h2 className="text-[36px] text-primary-two md:text-[85px] font-manrope-extra-bold">
-              Who We Are
+              {whoWeAre?.name}
             </h2>
-
-            <div className="md:mt-4 space-y-5 text-base leading-relaxed md:text-2xl font-manrope-regular">
-              <p>
-                Inspired by the spirit of the white horse — swift, reliable, and noble —
-                SESOR Express delivers more than just packages; we deliver trust,
-                efficiency, and purpose.
-              </p>
-              <p>
-                We exist to support businesses and individuals alike, helping them move
-                forward by providing logistics solutions that are precise, reliable, and
-                dependable. Every delivery we handle reflects our commitment to breaking
-                barriers and opening new paths in the delivery landscape.
-              </p>
-              <p>
-                With SESOR Express, you gain a trusted partner, a team dedicated to
-                innovation, excellence, and exceptional service. We continue to evolve,
-                embracing new technologies and ideas to provide smarter, more efficient
-                logistics solutions, because every delivery matters to us.
-              </p>
+            <div className="md:mt-4 space-y-5 text-base leading-relaxed md:text-2xl font-manrope-regular" dangerouslySetInnerHTML={{ __html: whoWeAre?.long_description }}>
             </div>
           </div>
         </div>

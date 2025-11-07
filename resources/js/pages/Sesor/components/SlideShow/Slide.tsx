@@ -12,13 +12,16 @@ import {
 } from '@/components/ui/dialog';
 import SlideContent from './SlideContent';
 import { Button } from '@/components/ui/button';
+import { usePage } from '@inertiajs/react';
 
-const images = [
-  '/assets/sesor/main_page/slide1.png',
-  // '/assets/sesor/main_page/slide2.png',
-];
+// const images = [
+//   '/assets/sesor/main_page/slide1.png',
+//   // '/assets/sesor/main_page/slide2.png',
+// ];
 
 export function SlideWithAlertDialog() {
+  const { slides } = usePage().props;
+  console.log(slides);
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
     [Autoplay({ delay: 2000, stopOnInteraction: false })]
@@ -36,12 +39,12 @@ export function SlideWithAlertDialog() {
     <div className="relative mx-auto">
       <div className="relative overflow-hidden" ref={emblaRef}>
         <div className="flex">
-          {images.map((src, index) => (
+          {slides?.map((slide: any, index: number) => (
             <div key={index} className="w-full flex-shrink-0 cursor-pointer">
               <Dialog>
                 <DialogTrigger asChild>
                   <img
-                    src={src}
+                    src={`/assets/images/banners/${slide?.image}`}
                     alt={`Slide ${index + 1}`}
                     className="w-full aspect-[16/5] object-cover transition cursor-pointer"
                   />

@@ -44,6 +44,11 @@ class Type extends Model
         return $this->hasMany(LibraryData::class, 'library_system_type_code', 'code');
     }
 
+    public function links()
+    {
+        return $this->hasMany(Link::class, 'type_code', 'code');
+    }
+
     public function target_user_libraries()
     {
         return $this->hasMany(LibraryDataTargetUser::class, 'target_user_type_code', 'code');

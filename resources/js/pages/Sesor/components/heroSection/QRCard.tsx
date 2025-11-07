@@ -1,4 +1,5 @@
 const QRCard = ({ title, qr, store, link }:any) => {
+    
     return (
         <div className="flex flex-col items-center">
             <p className="text-center font-manrope-semi-bold text-[10px] xl:text-[12px]">{title}</p>

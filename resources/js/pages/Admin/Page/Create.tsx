@@ -299,7 +299,7 @@ export default function Create({ editData, readOnly }: { editData?: any; readOnl
                                             dropzoneOptions={{
                                                 maxFiles: 100,
                                                 maxSize: 1024 * 1024 * 4,
-                                                multiple: true,
+                                                multiple: false,
                                                 accept: {
                                                     'image/jpeg': ['.jpeg', '.jpg'],
                                                     'image/png': ['.png'],
