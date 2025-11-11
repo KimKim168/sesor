@@ -7,6 +7,7 @@ import DriverSection from '../components/heroSection/AboutHero/DriverSection'
 import CustomService from '../components/heroSection/AboutHero/CustomService'
 import DeliverSection from '../components/heroSection/AboutHero/DeliverSection'
 import CareerPost from '../components/Card/CareerPost'
+import DriverAndCustomerServiceSection from '../components/heroSection/AboutHero/DriverSection'
 
 const Index = () => {
   return (
@@ -15,8 +16,7 @@ const Index = () => {
         <VisionHero/>
         <MissionHero/>
         <CoreValue/>
-        <DriverSection/>
-        <CustomService/>
+        <DriverAndCustomerServiceSection/>
         <DeliverSection/>
         <CareerPost/>
     </SesorLayout>

@@ -22,6 +22,9 @@ class SesorFrontPageController extends Controller
      */
     public function index()
     {
+        $campaignPromotion = Page::where('code', 'campaign-promotion')
+            ->with('images')
+            ->first();
         $slides = Banner::where('type_code', 'home-banner-first')->orderBy('id', 'desc')->get();
         // FirstHero
         $backgroundSecound = Banner::where('type_code', 'home-banner-second')->orderBy('id', 'desc')->first();
@@ -51,6 +54,7 @@ class SesorFrontPageController extends Controller
         // return $faqs;
         return Inertia::render('Sesor/Index', [
             'slides' => $slides,
+            'campaignPromotion' => $campaignPromotion,
             'backgroundSecound' => $backgroundSecound,
             'firstHero' => $firstHero,
             'playStorAndroid' => $playStorAndroid,
@@ -78,12 +82,49 @@ class SesorFrontPageController extends Controller
                     ->with('images'); // eager load images for children
             }])
             ->get();
-        // return $coreValues;
+
+        $ourTeam = Page::where('code', 'our-team')
+            ->with(['children' => function ($query) {
+                $query->orderBy('order_index', 'desc')
+                    ->with('images'); // eager load images for children
+            }])
+            ->get();
+
+        $whoWeDeliverFor = Page::where('code', 'who-we-deliver-for')->with('images')->first();
+        // return $whoWeDeliverFor;
         return Inertia::render('Sesor/AboutUs/Index', [
             'whoWeAre' => $whoWeAre,
             'vision' => $vision,
             'mission' => $mission,
             'coreValues' => $coreValues,
+            'ourTeam' => $ourTeam,
+            'whoWeDeliverFor' => $whoWeDeliverFor,
+        ]);
+    }
+
+    public function campaign_promotion()
+    {
+        $campaignPromotion = Page::where('code', 'campaign-promotion')
+            ->with('images')
+            ->first();
+
+        return Inertia::render('Sesor/AboutUs/CampaignPromotion', [
+            'campaignPromotion' => $campaignPromotion,
+        ]);
+    }
+    public function service()
+    {
+        $ourServices = Page::where('code', 'our-services')->orderBy('id', 'desc')->with('children')->first();
+        $whatWeDeliver = Page::where('code', 'what-we-deliver')
+            ->with(['children' => function ($query) {
+                $query->orderBy('order_index', 'desc')
+                    ->with('images'); // eager load images for children
+            }])
+            ->get();
+        // return $whatWeDeliver;
+        return Inertia::render('Sesor/Service/Index', [
+            'whatWeDeliver' => $whatWeDeliver,
+            'ourServices' => $ourServices,
         ]);
     }
 }
