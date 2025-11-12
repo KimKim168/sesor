@@ -46,7 +46,7 @@ const footerSections = [
 // ];
 
 const Footer = () => {
-const { media_links } = usePage<any>().props;
+const { media_links, website_info } = usePage<any>().props;
     return (
         <footer className="mt-10 bg-true-primary">
             <div className="section-container relative p-4 md:py-6 xl:px-0">
@@ -54,7 +54,7 @@ const { media_links } = usePage<any>().props;
                 <div className="mt-4 grid grid-cols-2 gap-y-6 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-9">
                     {/* Logo */}
                     <div className="col-span-full xl:col-span-2">
-                        <LogoFooter />
+                        <LogoFooter website_info={website_info}/>
                     </div>
 
                     {/* Footer Sections */}
@@ -102,7 +102,7 @@ const { media_links } = usePage<any>().props;
                                     >
                                         <img
                                             src={`/assets/images/links/thumb/${item.image}`}
-                                            alt={item?.title ?? 'social icon'}
+                                            alt={item?.name ?? 'social icon'}
                                             className="h-7 w-7 rounded border dark:border-white"
                                         />
                                     </a>

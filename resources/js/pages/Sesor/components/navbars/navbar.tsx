@@ -6,13 +6,13 @@ import { NavMenu } from './nav-menu';
 import { NavigationSheet } from './navigation-sheet';
 
 const Navbar02Page = () => {
-    const { locale } = usePage().props;
+    const { locale, website_info } = usePage().props;
     return (
         <div>
             <nav className="section-container h-20 border-b bg-background md:h-24">
                 <div className="flex h-full items-center justify-between">
                     <div className="flex items-center gap-8">
-                        <Logo />
+                        <Logo website_info={website_info}/>
                         {/* Desktop Menu */}
                         <NavMenu className="hidden lg:block" />
                     </div>

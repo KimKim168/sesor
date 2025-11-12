@@ -2,7 +2,11 @@ import { usePage } from '@inertiajs/react';
 import ButtonSimple from '../../Bottons/ButtonSimple';
 
 const Hero03 = () => {
-    const { backgroundThird, thirdHero } = usePage<any>().props;
+    const { backgroundThird, thirdHero, locale } = usePage<any>().props;
+
+    // Font classes
+    const fontTitleClass = locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-semi-bold';
+    const fontDescClass = locale === 'kh' ? 'font-kantumruy mt-2' : 'font-manrope-semi-bold';
 
     return (
         <div
@@ -15,14 +19,24 @@ const Hero03 = () => {
                 <div className="grid min-h-[450px] grid-cols-1 items-center md:grid-cols-3 md:gap-10">
                     {/* Left Content */}
                     <div className="col-span-2">
-                        <div className="flex flex-col py-[16px] text-start font-manrope-semi-bold text-white md:py-12 md:text-left">
-                            {/* Logo + Title */}
-                            <h2 className="font-manrope-semi-bold text-[25px] leading-snug md:text-[40px]">{thirdHero?.name}</h2>
-                            <p className="font-manrope-semi-bold text-[25px] text-primary-two md:text-[40px]">{thirdHero?.short_description}</p>
+                        <div className="flex flex-col py-[16px] text-start text-white md:py-12 md:text-left">
+                            {/* Title */}
+                            <h2 className={`text-[25px] leading-snug md:text-[40px] ${fontTitleClass}`}>
+                                {locale === 'kh' ? thirdHero?.name_kh || thirdHero?.name : thirdHero?.name}
+                            </h2>
 
-                            {/* Button at the End */}
+                            {/* Description */}
+                            <p className={`text-[25px] text-primary-two md:text-[40px] ${fontDescClass}`}>
+                                {locale === 'kh' ? thirdHero?.short_description_kh || thirdHero?.short_description : thirdHero?.short_description}
+                            </p>
+
+                            {/* Button */}
                             <div className="mt-6 md:mt-30">
-                                <ButtonSimple title={thirdHero?.button_title} link={thirdHero?.link} targetBlank="_blank" />
+                                <ButtonSimple
+                                    title={locale === 'kh' ? thirdHero?.button_title_kh || thirdHero?.button_title : thirdHero?.button_title}
+                                    link={thirdHero?.link}
+                                    targetBlank="_blank"
+                                />
                             </div>
                         </div>
                     </div>

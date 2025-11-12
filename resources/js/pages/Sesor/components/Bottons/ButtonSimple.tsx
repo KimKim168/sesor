@@ -1,21 +1,30 @@
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { styled } from 'styled-components';
 
 const ButtonSimple = ({ title, link, targetBlank }: any) => {
+    const { locale } = usePage<any>().props;
     const isExternal = link.startsWith('http');
+
+    // 🔹 Dynamic font based on locale
+    const fontClass = locale === 'kh' ? 'font-kantumruy font-bold' : 'font-manrope-bold';
+
     return (
         <StyledWrapper>
             <Button
                 asChild
                 className={cn(
-                    'button w-[200px] bg-primary-two px-2 font-manrope-bold text-[13px] text-primary transition-all hover:bg-primary-two md:text-[15px]',
+                    `button w-[200px] bg-primary-two px-2 text-[13px] text-primary transition-all hover:bg-primary-two md:text-[15px] ${fontClass}`,
                     'newStyle',
                 )}
             >
                 {isExternal ? (
-                    <a href={link} target={targetBlank ? '_blank' : '_self'} rel={targetBlank ? 'noopener noreferrer' : undefined}>
+                    <a
+                        href={link}
+                        target={targetBlank ? '_blank' : '_self'}
+                        rel={targetBlank ? 'noopener noreferrer' : undefined}
+                    >
                         <span className="label">{title}</span>
                     </a>
                 ) : (
