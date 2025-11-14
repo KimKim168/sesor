@@ -1,77 +1,164 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import ButtonSimple from '../Bottons/ButtonSimple';
+import { useForm, usePage } from '@inertiajs/react';
+import { useState } from 'react';
 import CheckBoxContact from './CheckBoxContact';
-import { Button } from '@/components/ui/button';
 
-const InquiryLeadForm = () => (
-    <div id="inquiry-lead-form">
-        <div className="section-container mt-10">
-            <h2 className="font-manrope-extra-bold text-2xl tracking-tight md:text-3xl">Inquiry Lead Form</h2>
-            <p className="mt-0.5 font-manrope-semi-bold text-base sm:text-lg">Want to know your delivery rate? Tell us few details for a quote!</p>
-            <div className="mt-7 grid gap-10 md:gap-10 lg:grid-cols-2">
-                {/* Form */}
-                <Card className="border-none py-0 shadow-none">
-                    <CardContent className="p-0">
-                        <form>
-                            <div className="grid gap-x-8 gap-y-4 md:grid-cols-2">
+const InquiryLeadForm = () => {
+    const { locale, inquiryLeadFormHeader } = usePage<any>().props;
+    const fontLabel = locale === 'kh' ? 'font-kantumruy font-semibold' : 'font-manrope-semi-bold';
+    const [statusMessage, setStatusMessage] = useState<string | null>(null); // For showing success/error
+
+    const { data, setData, post, processing, errors, reset } = useForm({
+        name: '',
+        contact_number: '',
+        business_or_store_name: '',
+        email: '',
+        message: '',
+        contact_method: '',
+    });
+
+    const submit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setStatusMessage(null); // Reset previous status
+
+        post('/inquiry-lead-form', {
+            preserveScroll: true,
+            onSuccess: () => {
+                reset();
+                setStatusMessage(locale === 'kh' ? 'ដាក់ស្នើបានជោគជ័យ!' : 'Submitted successfully!');
+            },
+            onError: () => {
+                setStatusMessage(locale === 'kh' ? 'ការដាក់ស្នើបរាជ័យ!' : 'Failed to submit!');
+            },
+        });
+    };
+
+    return (
+        <div id="inquiry-lead-form">
+            <div className="section-container mt-10">
+                <h2
+                    className={`${locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-extra-bold'} text-2xl tracking-tight md:text-3xl`}
+                >
+                    {inquiryLeadFormHeader?.name}
+                </h2>
+                <p className={`${fontLabel} mt-0.5 text-base sm:text-lg`}>Want to know your delivery rate? Tell us a few details for a quote!</p>
+
+                <div className="mt-7 grid gap-10 lg:grid-cols-2">
+                    <Card className="border-none py-0 shadow-none">
+                        <CardContent className="p-0">
+                            <form onSubmit={submit} className="grid gap-x-8 gap-y-4 md:grid-cols-2">
+                                {/* Name */}
                                 <div className="col-span-2 sm:col-span-1">
-                                    <Label className="font-manrope-semi-bold text-[16px] md:text-[18px]" htmlFor="firstName">
-                                        Name
+                                    <Label htmlFor="name" className={`${fontLabel} text-[16px] md:text-[18px]`}>
+                                        {locale === 'kh' ? 'ឈ្មោះ' : 'Name'}
                                     </Label>
-                                    <Input id="name" className="mt-0.5 h-10 border border-black bg-white shadow-none" />
+                                    <Input
+                                        id="name"
+                                        value={data.name}
+                                        onChange={(e) => setData('name', e.target.value)}
+                                        className="mt-0.5 h-10 border border-black bg-white shadow-none"
+                                    />
+                                    {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
                                 </div>
+
+                                {/* Contact Number */}
                                 <div className="col-span-2 sm:col-span-1">
-                                    <Label className="font-manrope-semi-bold text-[16px] md:text-[18px]" htmlFor="numberOrTelegram">
-                                        Contact Number
+                                    <Label htmlFor="contact_number" className={`${fontLabel} text-[16px] md:text-[18px]`}>
+                                        {locale === 'kh' ? 'លេខទូរស័ព្ទ' : 'Contact Number'}
                                     </Label>
-                                    <Input id="numberOrTelegram" className="mt-0.5 h-10 border border-black bg-white shadow-none" />
+                                    <Input
+                                        id="contact_number"
+                                        value={data.contact_number}
+                                        onChange={(e) => setData('contact_number', e.target.value)}
+                                        className="mt-0.5 h-10 border border-black bg-white shadow-none"
+                                    />
+                                    {errors.contact_number && <p className="mt-1 text-sm text-red-500">{errors.contact_number}</p>}
                                 </div>
+
+                                {/* Business / Store Name */}
                                 <div className="col-span-2 sm:col-span-1">
-                                    <Label className="font-manrope-semi-bold text-[16px] md:text-[18px]" htmlFor="businessOrStoreName">
-                                        Business / Store Name
+                                    <Label htmlFor="business_or_store_name" className={`${fontLabel} text-[16px] md:text-[18px]`}>
+                                        {locale === 'kh' ? 'ឈ្មោះអាជីវកម្ម / ហាង' : 'Business / Store Name'}
                                     </Label>
-                                    <Input id="name" className="mt-0.5 h-10 border border-black bg-white shadow-none" />
+                                    <Input
+                                        id="business_or_store_name"
+                                        value={data.business_or_store_name}
+                                        onChange={(e) => setData('business_or_store_name', e.target.value)}
+                                        className="mt-0.5 h-10 border border-black bg-white shadow-none"
+                                    />
                                 </div>
+
+                                {/* Email */}
                                 <div className="col-span-2 sm:col-span-1">
-                                    <Label className="font-manrope-semi-bold text-[16px] md:text-[18px]" htmlFor="pickUpAddress">
-                                        Email
+                                    <Label htmlFor="email" className={`${fontLabel} text-[16px] md:text-[18px]`}>
+                                        {locale === 'kh' ? 'អ៊ីមែល' : 'Email'}
                                     </Label>
-                                    <Input id="pickUpAddress" className="mt-0.5 h-10 border border-black bg-white shadow-none" />
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        value={data.email}
+                                        onChange={(e) => setData('email', e.target.value)}
+                                        className="mt-0.5 h-10 border border-black bg-white shadow-none"
+                                    />
                                 </div>
+
+                                {/* Message */}
                                 <div className="col-span-2">
-                                    <Label className="font-manrope-semi-bold text-[16px] md:text-[18px]" htmlFor="message">
-                                        Message (Optional)
+                                    <Label htmlFor="message" className={`${fontLabel} text-[16px] md:text-[18px]`}>
+                                        {locale === 'kh' ? 'សារ' : 'Message (Optional)'}
                                     </Label>
                                     <textarea
                                         id="message"
+                                        value={data.message}
+                                        onChange={(e) => setData('message', e.target.value)}
                                         rows={4}
-                                        placeholder="Write your message here..."
+                                        placeholder={locale === 'kh' ? 'សរសេរសាររបស់អ្នកនៅទីនេះ' : 'Write your message here...'}
                                         className="mt-0.5 w-full rounded-md border border-black bg-white p-2 text-base shadow-none focus-visible:outline-none"
-                                    ></textarea>
+                                    />
                                 </div>
-                                <div className="col-span-2">
-                                    <p className="font-manrope-semi-bold text-[16px] md:text-[18px]">
-                                        Preferred Contact Method (Required to select one)
-                                    </p>
 
-                                    <div className='flex justify-between items-end'>
-                                        <CheckBoxContact />
-                                        <ButtonSimple title={'Submit'} link={'#'}  newStyle="rounded-full bg-green-500 text-white hover:bg-green-600" />
-                                        {/* <Button className='botton bg-primary-two hover:bg-primary-two text-black w-[150px] font-manrope-bold rounded-none border'>Submit</Button> */}
+                                {/* Preferred Contact Method */}
+                                <div className="col-span-2">
+                                    <p className={`${fontLabel} text-[16px] md:text-[18px]`}>
+                                        {locale === 'kh'
+                                            ? 'វិធីសាស្ត្រទំនាក់ទំនងដែលពេញចិត្ត (តម្រូវឱ្យជ្រើសរើសមួយ)'
+                                            : 'Preferred Contact Method (Required to select one)'}
+                                    </p>
+                                    <div className="col-span-2 flex items-end justify-between">
+                                        <div>
+                                            <CheckBoxContact value={data.contact_method} onChange={(value) => setData('contact_method', value)} />
+                                            {errors.contact_method && <p className="mt-1 text-sm text-red-500">{errors.contact_method}</p>}
+                                        </div>
+
+                                        {/* Submit Button */}
+                                        <button
+                                            type="submit"
+                                            disabled={processing}
+                                            className={`${locale === 'kh' ? 'font-kantumruy font-bold' : 'font-manrope-bold'} inline-flex h-9 w-[200px] shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-primary-two px-2 py-2 text-[13px] text-primary transition-all outline-none hover:-translate-y-[2px] hover:bg-primary-two md:text-[15px]`}
+                                        >
+                                            {locale === 'kh' ? 'ដាក់ស្នើ' : 'Submit'}
+                                        </button>
                                     </div>
+
+                                    {/* Status Message */}
+                                    {statusMessage && (
+                                        <div className="col-span-2 mt-3 text-center text-sm font-semibold text-primary">{statusMessage}</div>
+                                    )}
                                 </div>
-                            </div>
-                        </form>
-                    </CardContent>
-                </Card>
-                <div>
-                    <img src="/assets/sesor/service/Service-03.png" />
+                            </form>
+                        </CardContent>
+                    </Card>
+
+                    {/* Image */}
+                    <div>
+                        <img src={`/assets/images/pages/${inquiryLeadFormHeader?.images?.[0]?.image}`} alt={inquiryLeadFormHeader?.name} />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-);
+    );
+};
 
 export default InquiryLeadForm;

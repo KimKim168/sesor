@@ -5,7 +5,8 @@ import { usePage } from '@inertiajs/react';
 
 const FAQS = () => {
     const [showFAQ, setShowFAQ] = useState(false);
-    const { backgroundFifth, fifthHero, faqs } = usePage<any>().props;
+    const { backgroundFifth, fifthHero, faqs, locale } = usePage<any>().props; 
+    const fontClass = locale === "kh" ? 'font-kantumruy font-semibold' : 'font-manrope-semi-bold';
     return (
         <div id="faqs">
             <div className="relative mt-5 w-full bg-cover bg-center md:mt-10" style={{
@@ -14,15 +15,15 @@ const FAQS = () => {
                 <div className="section-container">
                     <div className="grid min-h-[450px] grid-cols-1 items-center gap-5 md:grid-cols-2 md:gap-10">
                         {/* Left Content */}
-                        <div className="flex flex-col py-[16px] text-start font-manrope-semi-bold text-white md:py-12 md:text-left">
-                            <p className="text-[25px] text-primary-two md:text-[40px]">{fifthHero?.name}</p>
+                        <div className={`flex flex-col py-[16px] text-start text-white md:py-12 md:text-left ${fontClass}`}>
+                            <p className="text-[25px] text-primary-two md:text-[40px]">{locale === 'kh' ? fifthHero?.name_kh || fifthHero?.name : fifthHero?.name}</p>
                             <h2 className="text-[18px] leading-snug md:text-[25px]">
-                                {fifthHero?.short_description}
+                                {locale === 'kh' ? fifthHero?.short_description_kh || fifthHero?.short_description : fifthHero?.short_description}
                             </h2>
 
                             <div className="mt-6 md:mt-30">
                                 <div onClick={() => setShowFAQ((prev) => !prev)}>
-                                    <ButtonWithArrow title={fifthHero?.button_title} />
+                                    <ButtonWithArrow title={locale === 'kh' ? fifthHero?.button_title_kh || fifthHero?.button_title : fifthHero?.button_title} />
                                 </div>
                             </div>
                         </div>
@@ -39,7 +40,7 @@ const FAQS = () => {
                     {/* FAQ Detail inside main content */}
                 </div>
             </div>
-            {showFAQ && <FAQSDetail faqs={faqs}/>}
+            {showFAQ && <FAQSDetail locale={locale} faqs={faqs}/>}
         </div>
     );  
 };

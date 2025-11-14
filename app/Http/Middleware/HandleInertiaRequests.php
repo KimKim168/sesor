@@ -74,6 +74,7 @@ class HandleInertiaRequests extends Middleware
             'post_categories' => PostCategory::orderBy('order_index')->orderBy('name')->get(),
             'active_category_code' => $active_category_code,
             'selected_category' => PostCategory::where('code', $active_category_code)->first(),
+            
         ];
     }
 }

@@ -2,9 +2,11 @@ import { Button } from '@/components/ui/button';
 import { usePage } from '@inertiajs/react';
 
 const HeroTopAbout = () => {
-  const { whoWeAre } = usePage<any>().props;
+  const { whoWeAre, locale } = usePage<any>().props;
+  const fontClass = locale === 'kh' ? 'font-kantumruy font-bold' : 'font-manrope-extra-bold';
+
   return (
-    <div className="relative w-full max-w-[2000px] mx-auto" id='who-we-are'>
+    <div className="relative w-full max-w-[2000px] mx-auto" id="who-we-are">
       {/* Background Image */}
       <img
         src="/assets/sesor/about_us/1BgAbout.png"
@@ -12,7 +14,7 @@ const HeroTopAbout = () => {
         className="absolute inset-0 h-full w-full object-cover"
       />
 
-      <div className="relative w-full overflow-hidden ">
+      <div className="relative w-full overflow-hidden">
         {/* Right Positioned Image */}
         <img
           src="/assets/sesor/about_us/x.png"
@@ -24,11 +26,26 @@ const HeroTopAbout = () => {
         <div className="section-container relative grid min-h-[450px] grid-cols-1 items-center gap-10 md:grid-cols-1">
           {/* Left Content */}
           <div className="flex flex-col max-w-[1100px] py-6 md:py-12 text-white">
-            <h2 className="text-[36px] text-primary-two md:text-[85px] font-manrope-extra-bold">
-              {whoWeAre?.name}
+            <h2
+              className={`text-[36px] text-primary-two md:text-[85px] ${fontClass}`}
+            >
+              {locale === 'kh'
+                ? whoWeAre?.name_kh || whoWeAre?.name
+                : whoWeAre?.name}
             </h2>
-            <div className="md:mt-4 space-y-5 text-base leading-relaxed md:text-2xl font-manrope-regular" dangerouslySetInnerHTML={{ __html: whoWeAre?.long_description }}>
-            </div>
+
+            <div
+              className={`md:mt-4 space-y-5 text-base leading-relaxed md:text-2xl ${
+                locale === 'kh' ? 'font-kantumruy' : 'font-manrope-regular'
+              }`}
+              dangerouslySetInnerHTML={{
+                __html:
+                  locale === 'kh'
+                    ? whoWeAre?.long_description_kh ||
+                      whoWeAre?.long_description
+                    : whoWeAre?.long_description,
+              }}
+            ></div>
           </div>
         </div>
       </div>

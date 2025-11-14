@@ -21,7 +21,7 @@ import { usePage } from '@inertiajs/react';
 
 export function SlideWithAlertDialog() {
   const { slides } = usePage().props;
-  console.log(slides);
+  // console.log(slides);
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
     [Autoplay({ delay: 2000, stopOnInteraction: false })]

@@ -2,7 +2,9 @@ import { usePage } from '@inertiajs/react';
 import ButtonSimple from '../../Bottons/ButtonSimple';
 
 const HeroBottom = () => {
-    const { chargesRates } = usePage<any>().props;
+    const { chargesRates, locale } = usePage<any>().props;
+    const isKh = locale === 'kh';
+
     return (
         <div
             id="charges-rates"
@@ -14,13 +16,39 @@ const HeroBottom = () => {
                     {/* Left Content */}
                     <div className="flex flex-col py-6 text-start text-white md:py-12 md:text-left">
                         {/* Logo + Title */}
-                        <p className="font-manrope-semi-bold text-[40px] text-primary-two">{chargesRates?.name}</p>
+                        <p
+                            className={`text-[40px] text-primary-two ${
+                                isKh ? 'font-kantumruy font-semibold' : 'font-manrope-semi-bold'
+                            }`}
+                        >
+                            {isKh
+                                ? chargesRates?.name_kh || chargesRates?.name
+                                : chargesRates?.name}
+                        </p>
 
-                        <h2 className="font-manrope-semi-bold text-[25px] leading-snug">{chargesRates?.short_description}</h2>
+                        <h2
+                            className={`text-[25px] leading-snug ${
+                                isKh ? 'font-kantumruy font-semibold' : 'font-manrope-semi-bold'
+                            }`}
+                        >
+                            {isKh
+                                ? chargesRates?.short_description_kh ||
+                                  chargesRates?.short_description
+                                : chargesRates?.short_description}
+                        </h2>
 
                         {/* Button at the End */}
                         <div className="mt-6 md:mt-30">
-                            <ButtonSimple title={chargesRates?.button_title} link={chargesRates?.link} targetBlank={true}/>
+                            <ButtonSimple
+                                title={
+                                    isKh
+                                        ? chargesRates?.button_title_kh ||
+                                          chargesRates?.button_title
+                                        : chargesRates?.button_title
+                                }
+                                link={chargesRates?.link}
+                                targetBlank={true}
+                            />
                         </div>
                     </div>
 

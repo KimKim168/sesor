@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\Career;
 use App\Models\Faq;
 use App\Models\Link;
 use App\Models\Page;
@@ -55,8 +56,6 @@ class SesorFrontPageController extends Controller
         $faqs = Faq::where('type_code', 'faq-1')
             ->orderByDesc('order_index')->get();
 
-//             $media_links = Link::whereIn('type_code', ['social-media', 'contact'])->orderBy('order_index', 'desc')->get();
-// return $media_links;
         return Inertia::render('Sesor/Index', [
             'slides' => $slides,
             'campaignPromotion' => $campaignPromotion,
@@ -92,6 +91,8 @@ class SesorFrontPageController extends Controller
             ->get();
         $whoWeDeliverFor = Page::where('code', 'who-we-deliver-for')->with('images')->first();
 
+      $career = Career::orderBy('id', 'desc')->get();
+// return $career;
         return Inertia::render('Sesor/AboutUs/Index', [
             'whoWeAre' => $whoWeAre,
             'vision' => $vision,
@@ -99,6 +100,7 @@ class SesorFrontPageController extends Controller
             'coreValues' => $coreValues,
             'ourTeam' => $ourTeam,
             'whoWeDeliverFor' => $whoWeDeliverFor,
+            'career' => $career,
         ]);
     }
 
@@ -141,6 +143,9 @@ class SesorFrontPageController extends Controller
             ->with(['children' => fn($q) => $q->orderByDesc('order_index')->with('images')])
             ->get();
 
+        $inquiryLeadFormHeader = Page::where('code', 'inquiry-lead-form')
+            ->with('images')->first();
+
         return Inertia::render('Sesor/Service/Index', [
             'whatWeDeliver' => $whatWeDeliver,
             'ourServices' => $ourServices,
@@ -148,6 +153,7 @@ class SesorFrontPageController extends Controller
             'restrictedItems' => $restrictedItems,
             'chargesRates' => $chargesRates,
             'benefits' => $benefits,
+            'inquiryLeadFormHeader' => $inquiryLeadFormHeader,
         ]);
     }
 }

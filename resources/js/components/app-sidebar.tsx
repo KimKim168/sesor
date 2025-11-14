@@ -106,6 +106,25 @@ const mainNavItems: {
         ],
     },
     {
+        title: 'Careers',
+        url: '/admin/careers',
+        icon: FilesIcon,
+        activeList: ['/admin/careers', '/admin/career-submits'],
+        permission: 'career view',
+        items: [
+            {
+                title: 'All Careers',
+                url: '/admin/careers',
+                permission: 'career view',
+            },
+            {
+                title: 'Career Submits',
+                url: '/admin/career-submits',
+                permission: 'career_submit view',
+            },
+        ],
+    },
+    {
         title: 'Website Settings',
         url: '/admin/website-infos',
         icon: SettingsIcon,
@@ -135,6 +154,11 @@ const mainNavItems: {
                 title: 'FAQ',
                 url: '/admin/faqs',
                 permission: 'faq view',
+            },
+            {
+                title: 'Inquiry Lead Form',
+                url: '/admin/inquiry-lead-form',
+                permission: 'inquiry_lead_form view',
             },
             {
                 title: 'Banners',

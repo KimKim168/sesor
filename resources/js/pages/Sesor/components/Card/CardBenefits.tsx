@@ -1,14 +1,19 @@
 import { usePage } from "@inertiajs/react";
 
 const CardBenefits = () => {
-    const { benefits } = usePage<any>().props;
+    const { benefits, locale } = usePage<any>().props;
     const [benefit] = benefits ?? [];
+    const isKh = locale === "kh";
 
     return (
         <div id="benefits" className="section-container mt-5 md:mt-10">
             <div className="text-center">
-                <h2 className="font-manrope-extra-bold text-3xl tracking-tight text-primary">
-                    {benefit?.name}
+                <h2
+                    className={`text-3xl tracking-tight text-primary ${
+                        isKh ? "font-kantumruy font-extrabold" : "font-manrope-extra-bold"
+                    }`}
+                >
+                    {isKh ? benefit?.name_kh || benefit?.name : benefit?.name}
                 </h2>
 
                 <div className="mt-2.5 grid gap-2 md:mt-5 md:grid-cols-2 md:gap-2 md:px-0 lg:grid-cols-5">
@@ -19,17 +24,36 @@ const CardBenefits = () => {
                         >
                             <div className="flex aspect-square w-16 items-center justify-center text-primary">
                                 <img
-                                    src={item.icon ? `/assets/images/pages/${item.icon}` : "/assets/images/default.png"}
-                                    alt={item.icon || "Benefit Image"}
+                                    src={
+                                        item.icon
+                                            ? `/assets/images/pages/${item.icon}`
+                                            : "/assets/images/default.png"
+                                    }
+                                    alt={item?.name}
                                 />
                             </div>
 
-                            <h3 className="mt-1 font-manrope-extra-bold text-[15px] text-white">
-                                {item.name}
+                            <h3
+                                className={`mt-1 text-[15px] text-white ${
+                                    isKh
+                                        ? "font-kantumruy font-extrabold"
+                                        : "font-manrope-extra-bold"
+                                }`}
+                            >
+                                {isKh ? item.name_kh || item.name : item.name}
                             </h3>
 
-                            <p className="mt-1 font-manrope-regular text-[9px] text-white">
-                                {item.short_description}
+                            <p
+                                className={`mt-1 text-[10px] text-white ${
+                                    isKh
+                                        ? "font-kantumruy"
+                                        : "font-manrope-regular"
+                                }`}
+                            >
+                                {isKh
+                                    ? item.short_description_kh ||
+                                      item.short_description
+                                    : item.short_description}
                             </p>
                         </div>
                     ))}

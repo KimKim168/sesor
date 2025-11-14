@@ -1,7 +1,7 @@
 import { usePage } from "@inertiajs/react";
 
 const DriverAndCustomerServiceSection = () => {
-  const { ourTeam } = usePage<any>().props; 
+  const { ourTeam, locale } = usePage<any>().props; 
   if (!ourTeam || ourTeam.length === 0) return null;
 
   // Get main parent
@@ -18,9 +18,11 @@ const DriverAndCustomerServiceSection = () => {
       {/* ===== Driver Section ===== */}
       <h2
         id="our-team"
-        className="mt-10 md:mt-15 mb-5 md:mb-5 text-center tracking-tight text-primary text-3xl font-manrope-extra-bold"
+        className={`mt-10 md:mt-15 mb-5 md:mb-5 text-center tracking-tight text-primary text-3xl ${
+          locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-extra-bold'
+        }`}
       >
-        {parent.name}
+        {locale === 'kh' ? parent.name_kh || parent.name : parent.name}
       </h2>
 
       {/* Driver */}
@@ -32,31 +34,41 @@ const DriverAndCustomerServiceSection = () => {
         />
 
         <div className="flex flex-col gap-4 lg:flex-row items-center relative">
-          <div className="lg:w-[500px] aspect-square ">
+          <div className="lg:w-[500px] aspect-square">
             <img
               src={`/assets/images/pages/${driver?.images?.[0]?.image}`}
-              alt={driver?.name}
+              alt={locale === 'kh' ? driver?.name_kh || driver?.name : driver?.name}
               className="h-full w-full object-cover"
             />
           </div>
 
           <div className="flex flex-1 pb-[16px] md:pb-12 lg:pb-0 justify-center items-center section-container">
             <div className="max-w-2xl text-white">
-              <h2 className="text-[25px] text-center font-manrope-extra-bold text-primary-two md:text-[40px]">
-                {driver?.name}
+              <h2
+                className={`text-[25px] text-center text-primary-two md:text-[40px] ${
+                  locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-extra-bold'
+                }`}
+              >
+                {locale === 'kh' ? driver?.name_kh || driver?.name : driver?.name}
               </h2>
 
-              {/* short_description contains multiple lines, so render safely */}
               <div
-                className="text-[18px] text-white leading-[1.4] md:text-[27px] font-manrope-regular whitespace-pre-line"
-                dangerouslySetInnerHTML={{ __html: driver?.short_description }}
+                className={`text-[18px] leading-[1.4] md:text-[27px] whitespace-pre-line ${
+                  locale === 'kh' ? 'font-kantumruy' : 'font-manrope-regular'
+                }`}
+                dangerouslySetInnerHTML={{
+                  __html:
+                    locale === 'kh'
+                      ? driver?.short_description_kh || driver?.short_description
+                      : driver?.short_description,
+                }}
               />
             </div>
           </div>
         </div>
       </div>
 
-      {/* ===== Custom Service Section ===== */}
+      {/* ===== Customer Service Section ===== */}
       <div className="relative mx-auto mt-10 w-full max-w-[2000px] overflow-hidden">
         <img
           src="/assets/sesor/about_us/3BgMission.png"
@@ -67,13 +79,26 @@ const DriverAndCustomerServiceSection = () => {
         <div className="relative flex flex-col items-center gap-4 lg:flex-row">
           <div className="flex flex-1 items-center justify-center pt-[16px] md:pt-12 lg:pt-0">
             <div className="max-w-2xl text-white px-4 lg:px-0">
-              <h2 className="text-[25px] text-center font-manrope-extra-bold text-primary-two md:text-[40px]">
-                {customerService?.name}
+              <h2
+                className={`text-[25px] text-center text-primary-two md:text-[40px] ${
+                  locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-extra-bold'
+                }`}
+              >
+                {locale === 'kh'
+                  ? customerService?.name_kh || customerService?.name
+                  : customerService?.name}
               </h2>
 
               <div
-                className=" text-white text-[18px] leading-[1.4] md:text-[27px] font-manrope-regular whitespace-pre-line"
-                dangerouslySetInnerHTML={{ __html: customerService?.short_description }}
+                className={`text-[18px] leading-[1.4] md:text-[27px] whitespace-pre-line ${
+                  locale === 'kh' ? 'font-kantumruy' : 'font-manrope-regular'
+                }`}
+                dangerouslySetInnerHTML={{
+                  __html:
+                    locale === 'kh'
+                      ? customerService?.short_description_kh || customerService?.short_description
+                      : customerService?.short_description,
+                }}
               />
             </div>
           </div>
@@ -81,7 +106,7 @@ const DriverAndCustomerServiceSection = () => {
           <div className="aspect-square lg:w-[500px]">
             <img
               src={`/assets/images/pages/${customerService?.images?.[0]?.image}`}
-              alt={customerService?.name}
+              alt='image'
               className="h-full w-full object-cover"
             />
           </div>

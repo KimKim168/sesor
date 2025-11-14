@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\CareerController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\InquiryLeadFormController;
 use App\Http\Controllers\Admin\ItemCategoryController;
 use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\Admin\KeyValueController;
@@ -17,6 +19,7 @@ use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\TypeGroupController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WebsiteInfoController;
+use App\Http\Controllers\Admin\CareerSubmitController;
 use App\Http\Controllers\RoleAndPermission\PermissionController;
 use App\Http\Controllers\RoleAndPermission\RoleController;
 use Illuminate\Support\Facades\Route;
@@ -77,7 +80,23 @@ Route::middleware(['auth'])->group(function () {
     Route::post('admin/website-infos/{website_info}/update', [WebsiteInfoController::class, 'update']);
     Route::post('admin/website-infos/{id}/recover', [WebsiteInfoController::class, 'recover']);
 
-    // Page
+    // inquiry-lead-form
+    Route::resource('admin/inquiry-lead-form', InquiryLeadFormController::class);
+    Route::post('admin/inquiry-lead-form/{id}/recover', [InquiryLeadFormController::class, 'recover']);
+
+    // Careers
+    Route::resource('admin/careers', CareerController::class);
+    // Route::delete('admin/pages/images/{image}', [PageController::class, 'destroy_image']);
+    Route::post('admin/careers/{career}/update', [CareerController::class, 'update']);
+    Route::post('admin/careers/{id}/recover', [CareerController::class, 'recover']);
+
+    // Career Submit
+    // Route::resource('admin/career-submits', CareerSubmitController::class);
+    // Route::delete('admin/pages/images/{image}', [PageController::class, 'destroy_image']);
+    // Route::post('admin/pages/{page}/update', [PageController::class, 'update']);
+    // Route::post('admin/pages/{id}/recover', [PageController::class, 'recover']);
+
+    // Pages
     Route::resource('admin/pages', PageController::class);
     Route::delete('admin/pages/images/{image}', [PageController::class, 'destroy_image']);
     Route::post('admin/pages/{page}/update', [PageController::class, 'update']);

@@ -4,9 +4,12 @@ import { LanguageSwitcher } from '../LanguageSwitcher';
 import { Logo } from './logo';
 import { NavMenu } from './nav-menu';
 import { NavigationSheet } from './navigation-sheet';
+import useTranslation from '@/hooks/use-translation';
 
 const Navbar02Page = () => {
     const { locale, website_info } = usePage().props;
+    const { t } = useTranslation();
+    const fontClass = locale === 'kh' ? 'font-kantumruy font-bold' : 'font-manrope-bold';
     return (
         <div>
             <nav className="section-container h-20 border-b bg-background md:h-24">
@@ -14,22 +17,22 @@ const Navbar02Page = () => {
                     <div className="flex items-center gap-8">
                         <Logo website_info={website_info}/>
                         {/* Desktop Menu */}
-                        <NavMenu className="hidden lg:block" />
+                        <NavMenu  className="hidden lg:block" />
                     </div>
 
                     <div className="flex items-center gap-1">
                         <a
                             href="https://portal.sesorexpress.com/"
                             target="_blank"
-                            className="hidden items-center justify-center gap-1 px-4 py-2 font-manrope-bold text-[15px] text-primary sm:inline-flex"
+                            className={`${fontClass} hidden items-center justify-center gap-1 px-4 py-2 text-[15px] text-primary sm:inline-flex`}
                         >
-                            <User /> <span>Log in / Register</span>
+                            <User /> <span>{t("Log in / Register")}</span>
                         </a>
                         <Link
                             href="/service#inquiry-lead-form"
-                            className="hidden px-4 py-2 font-manrope-bold text-[15px] text-primary hover:underline md:inline-block"
+                            className={`hidden px-4 py-2 text-[15px] text-primary hover:underline md:inline-block ${fontClass}`}
                         >
-                            Book Your Delivery
+                            {t("Book Your Delivery")}
                         </Link>
 
                         <LanguageSwitcher />

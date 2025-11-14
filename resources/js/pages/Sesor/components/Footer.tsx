@@ -1,5 +1,6 @@
 import { Link, usePage } from '@inertiajs/react';
 import { LogoFooter } from './navbars/logoFooter';
+import useTranslation from '@/hooks/use-translation';
 
 const footerSections = [
     {
@@ -36,17 +37,13 @@ const footerSections = [
     { title: 'FAQs', mainLink: '/#faqs', links: [] },
 ];
 
-// const followUs = [
-//     { img: '/assets/sesor/links/facebook.png', link: 'https://www.facebook.com/SESORexpress' },
-//     { img: '/assets/sesor/links/instagram.png', link: 'https://www.instagram.com/sesorexpress' },
-//     { img: '/assets/sesor/links/tiktok.png', link: 'https://www.tiktok.com/@sesorexpress' },
-//     { img: '/assets/sesor/links/telegram.png', link: 'https://t.me/sesorx' },
-//     { img: '/assets/sesor/links/whatapp.png', link: 'https://wa.me/qr/O5P3YQECSVJNI1' },
-//     { img: '/assets/sesor/links/linkedin.png', link: 'https://www.linkedin.com/company/sesor-express/' },
-// ];
-
 const Footer = () => {
-const { media_links, website_info } = usePage<any>().props;
+    const { media_links, website_info, locale } = usePage<any>().props;
+    const { t } = useTranslation();
+
+    // Apply Khmer font when locale is 'kh'
+    const fontClass = locale === 'kh' ? 'font-kantumruy' : 'font-manrope-light';
+
     return (
         <footer className="mt-10 bg-true-primary">
             <div className="section-container relative p-4 md:py-6 xl:px-0">
@@ -54,21 +51,27 @@ const { media_links, website_info } = usePage<any>().props;
                 <div className="mt-4 grid grid-cols-2 gap-y-6 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-9">
                     {/* Logo */}
                     <div className="col-span-full xl:col-span-2">
-                        <LogoFooter website_info={website_info}/>
+                        <LogoFooter website_info={website_info} />
                     </div>
 
                     {/* Footer Sections */}
                     {footerSections.map(({ title, links, mainLink }) => (
                         <div key={title} className="ml-0 md:ml-5">
-                            <Link href={mainLink} className="font-manrope-bold text-[15px] text-primary-two hover:underline">
-                                {title}
+                            <Link
+                                href={mainLink}
+                                className={`${locale === 'kh' ? 'font-kantumruy font-bold' : 'font-manrope-bold'} text-[15px] text-primary-two hover:underline`}
+                            >
+                                {t(title)}
                             </Link>
                             {links.length > 0 && (
                                 <ul className="mt-2 space-y-1">
                                     {links.map(({ title, href }) => (
                                         <li key={title}>
-                                            <Link href={href} className="font-manrope-light text-xs text-white hover:underline">
-                                                {title}
+                                            <Link
+                                                href={href}
+                                                className={`${fontClass} text-xs text-white hover:underline`}
+                                            >
+                                                {t(title)}
                                             </Link>
                                         </li>
                                     ))}
@@ -76,20 +79,28 @@ const { media_links, website_info } = usePage<any>().props;
                             )}
                         </div>
                     ))}
+
+                    {/* Terms Section */}
                     <div>
-                        <span className="font-manrope-bold text-[15px] text-primary-two hover:underline">Terms & Conditions</span>
+                        <span
+                            className={`${locale === 'kh' ? 'font-kantumruy font-bold' : 'font-manrope-bold'} text-[15px] text-primary-two hover:underline`}
+                        >
+                            {t('Terms & Conditions')}
+                        </span>
                         <ul className="space-y-1">
                             <li>
-                                <span className="font-manrope-light text-xs text-white hover:underline">©2025 SESOR Express</span>
+                                <span className={`${fontClass} text-xs text-white hover:underline`}>
+                                    {locale === 'kh' ? website_info?.copyright_kh || website_info?.copyright : website_info?.copyright}
+                                </span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 {/* Bottom Right Social Links */}
-                <div className="right-0 bottom-0 my-4 font-manrope-extra-light text-white lg:absolute">
+                <div className="right-0 bottom-0 my-4 lg:absolute text-white">
                     <div className="flex flex-col items-center lg:items-start">
-                        <span className="mb-1 text-xs">Follow Us On</span>
+                        <span className={`mb-1 text-xs ${fontClass}`}>{t('Follow Us On')}</span>
                         <div className="mb-1 flex gap-1">
                             {media_links?.length > 0 &&
                                 media_links.map((item: any) => (
@@ -108,7 +119,11 @@ const { media_links, website_info } = usePage<any>().props;
                                     </a>
                                 ))}
                         </div>
-                        <span className="text-xs">Sesor Express</span>
+                        <span className={`text-xs ${fontClass}`}>
+                            {locale === 'kh'
+                                ? website_info?.name_kh || website_info?.name
+                                : website_info?.name}
+                        </span>
                     </div>
                 </div>
             </div>
