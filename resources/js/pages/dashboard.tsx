@@ -13,7 +13,7 @@ import {
     LockKeyholeIcon,
     LucideIcon,
     MapPinHouseIcon,
-    PlusCircleIcon,
+    BriefcaseBusiness,
     SchoolIcon,
     Settings2Icon,
     SettingsIcon,
@@ -66,6 +66,14 @@ const mainNavItems: {
         activeList: ['/admin/library-data'],
         permission: 'library_data view',
     },
+    {
+        title: 'Careers',
+        description: 'Manage job openings, applicant submissions, and career-related records efficiently.',
+        url: '/admin/careers',
+        icon: BriefcaseBusiness,
+        activeList: ['/admin/careers'],
+        permission: 'career view',
+    },
 
     {
         title: 'Types',
@@ -74,20 +82,20 @@ const mainNavItems: {
         icon: ShapesIcon,
         permission: 'type view',
     },
-    {
-        title: 'Locations',
-        description: 'Manage provinces, cities, and other location-based information.',
-        url: '/admin/locations',
-        icon: MapPinHouseIcon,
-        permission: 'location view',
-    },
-    {
-        title: 'Languages',
-        description: 'Manage supported languages and translation options.',
-        url: '/admin/languages',
-        icon: LanguagesIcon,
-        permission: 'language view',
-    },
+    // {
+    //     title: 'Locations',
+    //     description: 'Manage provinces, cities, and other location-based information.',
+    //     url: '/admin/locations',
+    //     icon: MapPinHouseIcon,
+    //     permission: 'location view',
+    // },
+    // {
+    //     title: 'Languages',
+    //     description: 'Manage supported languages and translation options.',
+    //     url: '/admin/languages',
+    //     icon: LanguagesIcon,
+    //     permission: 'language view',
+    // },
 ];
 
 export default function Dashboard() {
@@ -116,7 +124,7 @@ export default function Dashboard() {
             </div> */}
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
                 <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                    <Link
+                    {/* <Link
                         href={hasLibrary ? `/manage-library-data` : `/register-library`}
                         className="group relative flex aspect-video flex-col items-center justify-center overflow-hidden rounded-xl border border-sidebar-border/70 p-6 text-center transition hover:bg-muted dark:border-sidebar-border"
                     >
@@ -132,7 +140,7 @@ export default function Dashboard() {
                         <p className="mt-1 text-sm text-muted-foreground">
                             {hasLibrary ? t('Update your library information') : t('Add your library to the network')}
                         </p>
-                    </Link>
+                    </Link> */}
                     <Link
                         href={`/settings/profile`}
                         className={`group relative flex aspect-video flex-col items-center justify-center overflow-hidden rounded-xl border border-sidebar-border/70 p-6 text-center transition hover:bg-muted dark:border-sidebar-border`}

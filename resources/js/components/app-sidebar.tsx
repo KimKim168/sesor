@@ -6,6 +6,7 @@ import { dashboard } from '@/routes';
 import { Link } from '@inertiajs/react';
 import {
     BookOpen,
+    BriefcaseBusiness,
     FilesIcon,
     Folder,
     LanguagesIcon,
@@ -108,7 +109,7 @@ const mainNavItems: {
     {
         title: 'Careers',
         url: '/admin/careers',
-        icon: FilesIcon,
+        icon: BriefcaseBusiness,
         activeList: ['/admin/careers', '/admin/career-submits'],
         permission: 'career view',
         items: [
