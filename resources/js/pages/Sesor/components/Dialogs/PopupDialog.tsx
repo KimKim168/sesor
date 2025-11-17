@@ -1,9 +1,11 @@
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import CareerSubmit from '../Card/CareerSubmit';
+import useTranslation from '@/hooks/use-translation';
 
 function PopupDialog({ titleButton, item, locale }: any) {
     const fontClass = locale === 'kh' ? 'kamtumruy font-bold' : 'font-manrope-bold';
+    const {t} = useTranslation();
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -22,7 +24,7 @@ function PopupDialog({ titleButton, item, locale }: any) {
                         <div
                             className={`${locale === 'kh' ? 'font-kantumruy font-semibold' : 'font-manrope-semi-bold'}text-[18px] text-white md:text-[20px]`}
                         >
-                            Position: <span className="text-primary-two">{item?.position}</span>
+                            {t("Position")}: <span className="text-primary-two">{item?.position}</span>
                         </div>
                     </DialogTitle>
                 </DialogHeader>

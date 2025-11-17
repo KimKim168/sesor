@@ -137,12 +137,6 @@ const CareerSubmit = ({ item }: { item: any }) => {
                         {/* Status Message */}
                         {statusMessage && <div className="col-span-2 mt-3 text-center text-sm font-semibold text-white">{statusMessage}</div>}
 
-                        {/* Success Message */}
-                        {success && (
-                            <div className="col-span-2 mt-1 text-center font-manrope-semi-bold text-green-500">
-                                {locale === 'kh' ? 'ដាក់ស្នើបានជោគជ័យ!' : 'Application submitted successfully!'}
-                            </div>
-                        )}
                     </form>
                 </CardContent>
             </Card>

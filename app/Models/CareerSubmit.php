@@ -10,9 +10,9 @@ class CareerSubmit extends Model
     use HasFactory;
     protected $guarded = [];
 
-    
 
-public function career()
+
+    public function career()
     {
         return $this->belongsTo(Career::class, 'career_id');
     }

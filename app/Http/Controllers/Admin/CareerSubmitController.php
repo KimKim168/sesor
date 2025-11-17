@@ -69,6 +69,7 @@ class CareerSubmitController extends Controller implements HasMiddleware
      *  ========================== */
     public function store(Request $request)
     {
+        
         $validated = $request->validate([
             'name'         => 'required|string|max:255',
             'career_id'    => 'required|exists:careers,id',
@@ -76,6 +77,7 @@ class CareerSubmitController extends Controller implements HasMiddleware
             'phone_number' => 'required|string|max:50',
             'file'         => 'required|file|mimes:pdf|max:20480',
         ]);
+        // dd($validated);
 
         DB::beginTransaction();
         try {
@@ -94,10 +96,10 @@ class CareerSubmitController extends Controller implements HasMiddleware
 
             $testData = (object) [
                 'name' => $created_data->name ?? '---',
-                'position' => $created_data->career->position ?? '---',
+                'position' => $created_data->career?->position ?? '---',
                 'email' => $created_data->email ?? '---',
                 'phone_number' => $created_data->phone_number ?? '---',
-                'file_path' => 'assets/files/career_submits' . $file_name,
+                'file_path' => 'assets/files/career_submits/' . $file_name,
             ];
 
             TelegramHelper::sentCareerSubmit($testData);
