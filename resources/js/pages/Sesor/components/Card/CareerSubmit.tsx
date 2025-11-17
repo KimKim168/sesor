@@ -5,9 +5,11 @@ import { Label } from '@/components/ui/label';
 import { useForm, usePage } from '@inertiajs/react';
 import { useState } from 'react';
 import Loader from '../Bottons/Loader';
+import useTranslation from '@/hooks/use-translation';
 
 const CareerSubmit = ({ item }: { item: any }) => {
     const { locale } = usePage<any>().props;
+    const { t } = useTranslation();
     const fontLabel = locale === 'kh' ? 'font-kantumruy' : 'font-manrope-regular';
 
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -72,7 +74,7 @@ const CareerSubmit = ({ item }: { item: any }) => {
                         {/* Position (Career) */}
                         <div className="col-span-2">
                             <Label className={`${fontLabel} text-[20px] text-white`} htmlFor="career_id">
-                                {locale === 'kh' ? 'តំណែង' : 'Position'}
+                                {t('Position')}
                             </Label>
                             <Input id="career_id" value={item.position || ''} readOnly className="mt-0.5 h-10 rounded-md bg-white shadow-none" />
                             {errors.career_id && <p className="mt-1 text-sm text-red-500">{errors.career_id}</p>}
@@ -95,7 +97,7 @@ const CareerSubmit = ({ item }: { item: any }) => {
                         {/* Phone Number */}
                         <div className="col-span-2">
                             <Label className={`${fontLabel} text-[20px] text-white`} htmlFor="phone_number">
-                                {locale === 'kh' ? 'លេខទូរស័ព្ទ' : 'Phone Number'}
+                                {t('Phone Number')}
                             </Label>
                             <Input
                                 id="phone_number"
@@ -113,7 +115,7 @@ const CareerSubmit = ({ item }: { item: any }) => {
                                     htmlFor="file"
                                     className="min-w-[150px] cursor-pointer rounded-full bg-white px-4 py-1.5 text-center font-manrope-regular text-primary hover:bg-gray-200"
                                 >
-                                    {data.file ? data.file.name : 'Attach CV'}
+                                    {data.file ? data.file.name : t('Attach CV')}
                                 </label>
 
                                 <Input type="file" id="file" onChange={(e) => setData('file', e.target.files?.[0] || null)} className="hidden" />

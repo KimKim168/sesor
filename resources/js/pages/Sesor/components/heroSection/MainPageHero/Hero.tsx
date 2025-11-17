@@ -17,7 +17,7 @@ const Hero = () => {
             id="download-apps"
             className="relative mt-5 w-full bg-cover bg-center md:mt-10"
             style={{
-                backgroundImage: `url('/assets/images/banners/${backgroundSecond?.image}')`,
+                backgroundImage: `url('/assets/sesor/main_page/hero.png')`,
             }}
         >
             <div className="section-container">

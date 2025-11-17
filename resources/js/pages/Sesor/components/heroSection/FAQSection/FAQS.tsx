@@ -10,7 +10,7 @@ const FAQS = () => {
     return (
         <div id="faqs">
             <div className="relative mt-5 w-full bg-cover bg-center md:mt-10" style={{
-                backgroundImage: `url('/assets/images/banners/${backgroundFifth?.image}')`,
+                backgroundImage: `url('/assets/sesor/main_page/BgFaq.png')`,
             }}>
                 <div className="section-container">
                     <div className="grid min-h-[450px] grid-cols-1 items-center gap-5 md:grid-cols-2 md:gap-10">

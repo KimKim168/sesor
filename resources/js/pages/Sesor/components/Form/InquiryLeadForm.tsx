@@ -4,9 +4,11 @@ import { Label } from '@/components/ui/label';
 import { useForm, usePage } from '@inertiajs/react';
 import { useState } from 'react';
 import CheckBoxContact from './CheckBoxContact';
+import useTranslation from '@/hooks/use-translation';
 
 const InquiryLeadForm = () => {
     const { locale, inquiryLeadFormHeader } = usePage<any>().props;
+    const {t} = useTranslation();
     const fontLabel = locale === 'kh' ? 'font-kantumruy font-semibold' : 'font-manrope-semi-bold';
     const [statusMessage, setStatusMessage] = useState<string | null>(null); // For showing success/error
 
@@ -41,9 +43,9 @@ const InquiryLeadForm = () => {
                 <h2
                     className={`${locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-extra-bold'} text-2xl tracking-tight md:text-3xl`}
                 >
-                    {inquiryLeadFormHeader?.name}
+                    {locale === 'kh' ? inquiryLeadFormHeader?.name_kh || inquiryLeadFormHeader?.name : inquiryLeadFormHeader?.name}
                 </h2>
-                <p className={`${fontLabel} mt-0.5 text-base sm:text-lg`}>Want to know your delivery rate? Tell us a few details for a quote!</p>
+                <p className={`${fontLabel} mt-0.5 text-base sm:text-lg`}>{locale === 'kh' ? inquiryLeadFormHeader?.short_description_kh || inquiryLeadFormHeader?.short_description : inquiryLeadFormHeader?.short_description}</p>
 
                 {/* {errors && <AllErrorsAlert title="Please fix the following errors" errors={errors} />} */}
 
@@ -54,7 +56,7 @@ const InquiryLeadForm = () => {
                                 {/* Name */}
                                 <div className="col-span-2 sm:col-span-1">
                                     <Label htmlFor="name" className={`${fontLabel} text-[16px] md:text-[18px]`}>
-                                        {locale === 'kh' ? 'ឈ្មោះ' : 'Name'}
+                                        {t('Name')}
                                     </Label>
                                     <Input
                                         id="name"
@@ -68,7 +70,7 @@ const InquiryLeadForm = () => {
                                 {/* Contact Number */}
                                 <div className="col-span-2 sm:col-span-1">
                                     <Label htmlFor="contact_number" className={`${fontLabel} text-[16px] md:text-[18px]`}>
-                                        {locale === 'kh' ? 'លេខទូរស័ព្ទ' : 'Contact Number'}
+                                        {t('Contact Number')}
                                     </Label>
                                     <Input
                                         id="contact_number"
@@ -82,7 +84,7 @@ const InquiryLeadForm = () => {
                                 {/* Business / Store Name */}
                                 <div className="col-span-2 sm:col-span-1">
                                     <Label htmlFor="business_or_store_name" className={`${fontLabel} text-[16px] md:text-[18px]`}>
-                                        {locale === 'kh' ? 'ឈ្មោះអាជីវកម្ម / ហាង' : 'Business / Store Name'}
+                                        {t('Business / Store Name')}
                                     </Label>
                                     <Input
                                         id="business_or_store_name"
@@ -96,7 +98,7 @@ const InquiryLeadForm = () => {
                                 {/* Email */}
                                 <div className="col-span-2 sm:col-span-1">
                                     <Label htmlFor="email" className={`${fontLabel} text-[16px] md:text-[18px]`}>
-                                        {locale === 'kh' ? 'អ៊ីមែល' : 'Email'}
+                                        {t('Email')}
                                     </Label>
                                     <Input
                                         id="email"
@@ -111,7 +113,7 @@ const InquiryLeadForm = () => {
                                 {/* Message */}
                                 <div className="col-span-2">
                                     <Label htmlFor="message" className={`${fontLabel} text-[16px] md:text-[18px]`}>
-                                        {locale === 'kh' ? 'សារ' : 'Message (Optional)'}
+                                        {t('Message (Optional)')}
                                     </Label>
                                     <textarea
                                         id="message"

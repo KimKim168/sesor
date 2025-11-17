@@ -8,6 +8,7 @@
     "About Us": "អំពីយើង",
     "Who We Are": "យើងជានរណា",
     "Contact": "ទំនាក់ទំនង",
+    "Contact Number": "លេខទំនាក់ទំនង",
     "Contact Detail": "ទំនាក់ទំនងលម្អិត",
     "Contact Us": "ទំនាក់ទំនងមកពួកយើង",
     "Call Us": "ទូរស័ព្ទមកយើងខ្ញុំ",
@@ -359,6 +360,9 @@
     "Who We Deliver For" : "យើងដឹកជញ្ជូនសម្រាប់អ្នកណា",
     "Campaign & Promotion" : "យុទ្ធនាការ និងការផ្សព្វផ្សាយ",
     "Career" : "ឱកាសការងារ",
+    "Careers" : "ឱកាសការងារ",
+    "All Careers" : "ឱកាសការងារទាំងអស់",
+    "Career Submits" : "ឱកាសការងារ ដាក់ស្នើ",
     "Services" : "សេវាកម្ម",
     "Our Services" : "សេវាកម្មរបស់យើង",
     "What We Deliver" : "អ្វីដែលយើងផ្តល់ជូន",
@@ -374,6 +378,11 @@
     "Terms & Conditions" : "លក្ខខណ្ឌ",
     "More Details" : "ព័ត៌មានលម្អិត",
     "Position" : "មុខតំណែង",
+    "Position Khmer" : "មុខតំណែង (ខ្មែរ)",
+    "Business / Store Name" : "ឈ្មោះអាជីវកម្ម / ហាង",
+    "Message (Optional)" : "សារ",
+    "Contact Method" : "វិធីសាស្ត្រទំនាក់ទំនង",
+    "Attach CV" : "ភ្ជាប់ប្រវត្តិរូបសង្ខេប",
 
     "Please fix the following errors": "សូមជួសជុលកំហុសខាងក្រោម"
 }

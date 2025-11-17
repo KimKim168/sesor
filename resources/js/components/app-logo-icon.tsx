@@ -3,7 +3,7 @@ import { SVGAttributes } from 'react';
 export default function AppLogoIcon(props: SVGAttributes<SVGElement>) {
     return (
         <>
-            <img src="/icon512_maskable.png" alt="Application Logo" className="h-full w-full object-contain" />
+            <img src="/assets/sesor/miniLogox.png" alt="Application Logo" className="h-full w-full object-contain" />
             {/* <svg {...props} viewBox="0 0 40 42" xmlns="http://www.w3.org/2000/svg">
                 <path
                     fillRule="evenodd"

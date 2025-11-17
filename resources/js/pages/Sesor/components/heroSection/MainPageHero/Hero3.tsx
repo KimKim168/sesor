@@ -12,7 +12,7 @@ const Hero03 = () => {
         <div
             className="relative mt-5 w-full bg-cover bg-center md:mt-10"
             style={{
-                backgroundImage: `url('/assets/images/banners/${backgroundThird?.image}')`,
+                backgroundImage: `url('/assets/sesor/main_page/Bghero3.png')`,
             }}
         >
             <div className="section-container">
