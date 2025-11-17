@@ -45,6 +45,8 @@ const InquiryLeadForm = () => {
                 </h2>
                 <p className={`${fontLabel} mt-0.5 text-base sm:text-lg`}>Want to know your delivery rate? Tell us a few details for a quote!</p>
 
+                {/* {errors && <AllErrorsAlert title="Please fix the following errors" errors={errors} />} */}
+
                 <div className="mt-7 grid gap-10 lg:grid-cols-2">
                     <Card className="border-none py-0 shadow-none">
                         <CardContent className="p-0">
@@ -88,6 +90,7 @@ const InquiryLeadForm = () => {
                                         onChange={(e) => setData('business_or_store_name', e.target.value)}
                                         className="mt-0.5 h-10 border border-black bg-white shadow-none"
                                     />
+                                    {errors.business_or_store_name && <p className="mt-1 text-sm text-red-500">{errors.business_or_store_name}</p>}
                                 </div>
 
                                 {/* Email */}
@@ -102,6 +105,7 @@ const InquiryLeadForm = () => {
                                         onChange={(e) => setData('email', e.target.value)}
                                         className="mt-0.5 h-10 border border-black bg-white shadow-none"
                                     />
+                                    {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
                                 </div>
 
                                 {/* Message */}
@@ -117,6 +121,7 @@ const InquiryLeadForm = () => {
                                         placeholder={locale === 'kh' ? 'សរសេរសាររបស់អ្នកនៅទីនេះ' : 'Write your message here...'}
                                         className="mt-0.5 w-full rounded-md border border-black bg-white p-2 text-base shadow-none focus-visible:outline-none"
                                     />
+                                    {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
                                 </div>
 
                                 {/* Preferred Contact Method */}

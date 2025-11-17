@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Helpers\FileHelper;
+use App\Helpers\TelegramHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Career;
 use App\Models\CareerSubmit;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class CareerSubmitController extends Controller implements HasMiddleware
@@ -46,7 +48,7 @@ class CareerSubmitController extends Controller implements HasMiddleware
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'LIKE', "%{$search}%")
-                  ->orWhere('email', 'LIKE', "%{$search}%");
+                    ->orWhere('email', 'LIKE', "%{$search}%");
             });
         }
 
@@ -69,24 +71,44 @@ class CareerSubmitController extends Controller implements HasMiddleware
     {
         $validated = $request->validate([
             'name'         => 'required|string|max:255',
-            'career_id'    => 'nullable|exists:careers,id',
-            'email'        => 'nullable|email|max:255',
-            'phone_number' => 'nullable|string|max:50',
-            'file'         => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png|max:20480',
+            'career_id'    => 'required|exists:careers,id',
+            'email'        => 'required|email|max:255',
+            'phone_number' => 'required|string|max:50',
+            'file'         => 'required|file|mimes:pdf|max:20480',
         ]);
 
-        // File upload
-        if ($request->hasFile('file')) {
-            $validated['file'] = FileHelper::uploadFile(
-                $request->file('file'),
-                'assets/files/career_submits',
-                false
-            );
+        DB::beginTransaction();
+        try {
+            // File upload
+            if ($request->hasFile('file')) {
+                $file_name = FileHelper::uploadFile(
+                    $request->file('file'),
+                    'assets/files/career_submits',
+                    false
+                );
+
+                $validated['file'] = $file_name;
+            }
+
+            $created_data = CareerSubmit::create($validated);
+
+            $testData = (object) [
+                'name' => $created_data->name ?? '---',
+                'position' => $created_data->career->position ?? '---',
+                'email' => $created_data->email ?? '---',
+                'phone_number' => $created_data->phone_number ?? '---',
+                'file_path' => 'assets/files/career_submits' . $file_name,
+            ];
+
+            TelegramHelper::sentCareerSubmit($testData);
+
+            DB::commit();
+
+            return redirect()->back()->with('success', 'Career submission created successfully!');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors('error', 'Telegram Career Submit Error: ' . $e->getMessage());
         }
-
-        CareerSubmit::create($validated);
-
-        return redirect()->back()->with('success', 'Career submission created successfully!');
     }
 
     /** ==========================

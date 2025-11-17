@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\TelegramHelper;
 use App\Http\Controllers\Controller;
 use App\Models\InquiryLeadForm;
 use Illuminate\Http\Request;
@@ -47,7 +48,7 @@ class InquiryLeadFormController extends Controller implements HasMiddleware
         if ($search) {
             $query->where(function ($sub_query) use ($search) {
                 $sub_query->where('name', 'LIKE', "%{$search}%")
-                          ->orWhere('email', 'LIKE', "%{$search}%");
+                    ->orWhere('email', 'LIKE', "%{$search}%");
             });
         }
 
@@ -65,7 +66,7 @@ class InquiryLeadFormController extends Controller implements HasMiddleware
     /**
      * Store a new inquiry submission from the frontend form
      */
-  
+
     public function store(Request $request)
     {
         // Validate input data from the form
@@ -74,13 +75,25 @@ class InquiryLeadFormController extends Controller implements HasMiddleware
             'contact_number'         => 'required|string|min:8|max:20',
             'business_or_store_name' => 'nullable|string|max:255',
             'email'                  => 'nullable|email|max:255',
-            'message'                => 'required|string|max:500',
+            'message'                => 'nullable|string|max:500',
             'contact_method'         => 'required|string|max:255',
         ]);
 
         try {
+
             // Start database transaction
             DB::beginTransaction();
+
+            $sent_data = (object) [
+                'name' => $validated['name'] ?? '---',
+                'phone' => $validated['contact_number'] ?? '---',
+                'email' => $validated['email'] ?? '---',
+                'contact_method' => $validated['contact_method'] ?? '---',
+                'business_or_store_name' => $validated['business_or_store_name'] ?? '---',
+                'message' => $validated['message'] ?? '---',
+            ];
+
+            TelegramHelper::sentInquiryForm($sent_data);
 
             // Insert inquiry into database
             InquiryLeadForm::create($validated);
@@ -88,9 +101,7 @@ class InquiryLeadFormController extends Controller implements HasMiddleware
             // Commit database changes
             DB::commit();
 
-            // Return success message
             return back()->with('success', 'Message placed successfully!');
-
         } catch (\Exception $e) {
 
             // Rollback if an error occurs
@@ -103,7 +114,7 @@ class InquiryLeadFormController extends Controller implements HasMiddleware
         }
     }
 
-     public function show($id)
+    public function show($id)
     {
         $editData = InquiryLeadForm::findOrFail(id: $id);
 

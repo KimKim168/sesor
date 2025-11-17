@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\TelegramHelper;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Session;
@@ -13,6 +14,20 @@ Route::get('/lang/{locale}', function ($locale) {
     Session::put('locale', $locale);
     return redirect()->back();
 });
+// Route::get('/test-message', function () {
+
+//     $testData = (object) [
+//         'name' => 'Test User',
+//         'position' => 'Dev',
+//         'email' => 'longsoeng@gmail.com',
+//         'phone_number' => '0123242332',
+//         'file_path' => 'assets/files/career_submits' . $file_name,
+//     ];
+
+//     $response = TelegramHelper::sentCareerSubmit($testData);
+
+//     return $response;
+// });
 
 // ==== Test Error ====
 Route::get('/test_error', function () {
