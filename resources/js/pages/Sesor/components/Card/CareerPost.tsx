@@ -12,7 +12,7 @@ const CareerPost = () => {
 
     return (
         <div>
-            <h2 id="career" className="mt-7.5 mb-3.5 text-center text-3xl tracking-tight text-primary md:mt-15 md:mb-5">
+            <h2 id="career" className={`${fontClass} mt-7.5 mb-3.5 text-center text-3xl tracking-tight text-primary md:mt-15 md:mb-5`}>
                 {t("Career")}
             </h2>
 
