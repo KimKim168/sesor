@@ -1,17 +1,18 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { usePage } from '@inertiajs/react';
 import { PopupDialog } from '../Dialogs/PopupDialog';
+import useTranslation from '@/hooks/use-translation';
 
 const CareerPost = () => {
     const { career, locale } = usePage().props;
-
+    const {t} = useTranslation();
     // Ensure exactly 4 cards
     const cards = Array.from({ length: 4 }, (_, idx) => career?.[idx] || null);
 
     return (
         <div>
             <h2 id="career" className="mt-7.5 mb-3.5 text-center font-manrope-extra-bold text-3xl tracking-tight text-primary md:mt-15 md:mb-5">
-                Career
+                {t("Career")}
             </h2>
 
             <div className="grid border-2 border-primary bg-gray-100 sm:grid-cols-2 lg:grid-cols-4">
@@ -38,7 +39,7 @@ const CareerPost = () => {
                                     {locale === 'kh' ? item.short_description_kh || item.short_description : item.short_description}
                                 </p>
 
-                                <PopupDialog item={item} locale={locale} titleButton="More Details" />
+                                <PopupDialog item={item} locale={locale} titleButton={t("More Details")} />
                             </CardContent>
                         </Card>
                     ) : (

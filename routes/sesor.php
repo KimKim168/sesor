@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\CareerSubmitController;
 use App\Http\Controllers\Admin\InquiryLeadFormController;
 use App\Http\Controllers\SesorFrontPageController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::post('/inquiry-lead-form', [InquiryLeadFormController::class, 'store']);
+Route::post('/career-submits', [CareerSubmitController::class, 'store']);
 
 Route::get('/', [SesorFrontPageController::class, 'index']);
 Route::get('/about_us', [SesorFrontPageController::class, 'about']);

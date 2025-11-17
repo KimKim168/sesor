@@ -3,13 +3,14 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import CareerSubmit from '../Card/CareerSubmit';
 
 function PopupDialog({ titleButton, item, locale }: any) {
+    const fontClass = locale === 'kh' ? 'kamtumruy font-bold' : 'font-manrope-bold';
     return (
         <Dialog>
             <DialogTrigger asChild>
                 <Button
                     size="sm"
                     variant="outline"
-                    className="mt-20 rounded-full border-0 bg-primary-two font-manrope-bold text-[15px] text-primary hover:bg-primary-two hover:text-primary dark:bg-primary-two"
+                    className="mt-20 rounded-full border-0 bg-primary-two  text-[15px] text-primary hover:bg-primary-two hover:text-primary dark:bg-primary-two"
                 >
                     {titleButton}
                 </Button>
@@ -34,7 +35,7 @@ function PopupDialog({ titleButton, item, locale }: any) {
                                
                             </div>
                         </div>
-                        <CareerSubmit />
+                        <CareerSubmit item={item} />
                     </div>
                 </div>
             </DialogContent>

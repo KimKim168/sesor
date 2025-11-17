@@ -1,0 +1,113 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Helpers\FileHelper;
+use App\Http\Controllers\Controller;
+use App\Models\Career;
+use App\Models\CareerSubmit;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+use Inertia\Inertia;
+
+class CareerSubmitController extends Controller implements HasMiddleware
+{
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:career_submit view', only: ['index', 'show']),
+            new Middleware('permission:career_submit delete', only: ['destroy']),
+        ];
+    }
+
+    /** ==========================
+     *  INDEX (LIST PAGE)
+     *  ========================== */
+    public function index(Request $request)
+    {
+        $query = CareerSubmit::query()->with('career');
+
+        // Filters
+        $perPage        = $request->input('perPage', 10);
+        $search         = $request->input('search', '');
+        $sortBy         = $request->input('sortBy', 'id');
+        $sortDirection  = $request->input('sortDirection', 'desc');
+        $trashed        = $request->input('trashed');
+
+        // Trashed filter
+        if ($trashed === 'with') {
+            $query->withTrashed();
+        } elseif ($trashed === 'only') {
+            $query->onlyTrashed();
+        }
+
+        // Search filter
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'LIKE', "%{$search}%")
+                  ->orWhere('email', 'LIKE', "%{$search}%");
+            });
+        }
+
+        // Sorting
+        $query->orderBy($sortBy, $sortDirection);
+
+        // Pagination
+        $tableData = $query->paginate($perPage)->onEachSide(1);
+
+        return Inertia::render('Admin/CareerSubmit/Index', [
+            'tableData' => $tableData,
+            'career'    => Career::select('id', 'position')->get(),
+        ]);
+    }
+
+    /** ==========================
+     *  STORE (CREATE SUBMISSION)
+     *  ========================== */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name'         => 'required|string|max:255',
+            'career_id'    => 'nullable|exists:careers,id',
+            'email'        => 'nullable|email|max:255',
+            'phone_number' => 'nullable|string|max:50',
+            'file'         => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png|max:20480',
+        ]);
+
+        // File upload
+        if ($request->hasFile('file')) {
+            $validated['file'] = FileHelper::uploadFile(
+                $request->file('file'),
+                'assets/files/career_submits',
+                false
+            );
+        }
+
+        CareerSubmit::create($validated);
+
+        return redirect()->back()->with('success', 'Career submission created successfully!');
+    }
+
+    /** ==========================
+     *  SHOW (READ-ONLY VIEW)
+     *  ========================== */
+    public function show(CareerSubmit $careerSubmit)
+    {
+        return Inertia::render('Admin/CareerSubmit/Create', [
+            'editData' => $careerSubmit->load('career'),
+            'readOnly' => true,
+            'careers'  => Career::select('id', 'position')->get(),
+        ]);
+    }
+
+    /** ==========================
+     *  DESTROY (SOFT DELETE)
+     *  ========================== */
+    public function destroy(CareerSubmit $careerSubmit)
+    {
+        $careerSubmit->delete();
+
+        return redirect()->back()->with('success', 'Career submit deleted successfully!');
+    }
+}

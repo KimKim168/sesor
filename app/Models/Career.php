@@ -12,6 +12,9 @@ class Career extends Model
     //  use HasFactory;
      use SoftDeletes;
 
-     
     protected $guarded = [];
+    public function submits()
+    {
+        return $this->hasMany(CareerSubmit::class, 'career_id');
+    }
 }

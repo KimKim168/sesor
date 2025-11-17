@@ -91,7 +91,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('admin/careers/{id}/recover', [CareerController::class, 'recover']);
 
     // Career Submit
-    // Route::resource('admin/career-submits', CareerSubmitController::class);
+    Route::resource('admin/career-submits', CareerSubmitController::class);
     // Route::delete('admin/pages/images/{image}', [PageController::class, 'destroy_image']);
     // Route::post('admin/pages/{page}/update', [PageController::class, 'update']);
     // Route::post('admin/pages/{id}/recover', [PageController::class, 'recover']);
