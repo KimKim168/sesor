@@ -30,7 +30,7 @@ class WebsiteInfoController extends Controller implements HasMiddleware
     {
         $website_info = WebsiteInfo::first();
         if ($website_info) {
-            return redirect("/admin/website-infos/6/edit");
+            return redirect("/admin/website-infos/{$website_info->id}/edit");
 
         } else {
             return redirect("/admin/website-infos/create");
