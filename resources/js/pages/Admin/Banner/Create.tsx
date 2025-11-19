@@ -125,7 +125,7 @@ export default function Create({ editData, readOnly }: { editData?: any; readOnl
                             containerClassName="col-span-2"
                         />
 
-                        <FormFieldTextArea
+                         <FormFieldTextArea
                             id="short_description_kh"
                             name="short_description_kh"
                             label="Short Description Khmer"
@@ -134,7 +134,7 @@ export default function Create({ editData, readOnly }: { editData?: any; readOnl
                             error={errors.short_description_kh}
                             containerClassName="col-span-2"
                         />
-                        <FormFieldTextArea
+                        {/*<FormFieldTextArea
                             id="long_description_kh"
                             name="long_description_kh"
                             label="Long Description Khmer"
@@ -151,7 +151,7 @@ export default function Create({ editData, readOnly }: { editData?: any; readOnl
                             value={data.button_title_kh}
                             onChange={(val) => setData('button_title_kh', val)}
                             error={errors.button_title_kh}
-                        />
+                        /> */}
                     </div>
                 ) : (
                     <div className="form-field-container">
@@ -176,7 +176,7 @@ export default function Create({ editData, readOnly }: { editData?: any; readOnl
                             containerClassName="col-span-2"
                         />
 
-                        <FormFieldTextArea
+                        {/* <FormFieldTextArea
                             id="long_description"
                             name="long_description"
                             label="Long Description"
@@ -202,7 +202,7 @@ export default function Create({ editData, readOnly }: { editData?: any; readOnl
                             value={data.link}
                             onChange={(val) => setData('link', val)}
                             error={errors.link}
-                        />
+                        /> */}
 
                         {types?.length > 0 && (
                             <FormCombobox
