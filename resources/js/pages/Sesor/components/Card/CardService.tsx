@@ -4,9 +4,9 @@ const CardService = () => {
     const { ourServices, locale } = usePage<any>().props;
 
     // Font classes
-    const fontTitleClass = locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-extra-bold';
-    const fontCardTitleClass = locale === 'kh' ? 'font-kantumruy font-semibold' : 'font-manrope-semi-bold';
-    const fontCardDescClass = locale === 'kh' ? 'font-kantumruy' : 'font-manrope-regular';
+    const fontTitleClass = locale === 'kh' ? 'font-bold' : 'font-manrope-extra-bold';
+    const fontCardTitleClass = locale === 'kh' ? 'font-bold' : 'font-manrope-semi-bold';
+    const fontCardDescClass = locale === 'kh' ? '' : 'font-manrope-regular';
 
     return (
         <div id="our-services" className="section-container mt-5 md:mt-10">

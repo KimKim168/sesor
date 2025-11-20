@@ -1,15 +1,15 @@
+import useTranslation from '@/hooks/use-translation';
 import { ReactNode } from 'react';
-import { FaTelegramPlane } from 'react-icons/fa';
 import Footer from './components/Footer';
 import Navbar02Page from './components/navbars/navbar';
-import { LanguageSwitcher } from './components/LanguageSwitcher';
 interface LayoutProps {
     children: ReactNode;
 }
 
 const SesorLayout = ({ children }: LayoutProps) => {
+    const { currentLocale } = useTranslation();
     return (
-        <div className="bg-white">
+        <div className={`${currentLocale == 'kh' ? 'font-sesor-khmer' : 'font-sesor-english'} bg-white`}>
             <Navbar02Page />
             <main className={`mx-auto min-h-screen`}>{children}</main>
             {/* <ScrollToTopButton/> */}

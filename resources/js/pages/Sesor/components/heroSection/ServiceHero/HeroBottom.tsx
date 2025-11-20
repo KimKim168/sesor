@@ -18,7 +18,7 @@ const HeroBottom = () => {
                         {/* Logo + Title */}
                         <p
                             className={`text-[40px] text-primary-two ${
-                                isKh ? 'font-kantumruy font-semibold' : 'font-manrope-semi-bold'
+                                isKh ? 'font-bold' : 'font-manrope-semi-bold'
                             }`}
                         >
                             {isKh
@@ -28,7 +28,7 @@ const HeroBottom = () => {
 
                         <h2
                             className={`text-[25px] leading-snug ${
-                                isKh ? 'font-kantumruy font-semibold' : 'font-manrope-semi-bold'
+                                isKh ? 'font-bold' : 'font-manrope-semi-bold'
                             }`}
                         >
                             {isKh

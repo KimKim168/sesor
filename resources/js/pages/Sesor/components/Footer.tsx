@@ -42,7 +42,7 @@ const Footer = () => {
     const { t } = useTranslation();
 
     // Apply Khmer font when locale is 'kh'
-    const fontClass = locale === 'kh' ? 'font-kantumruy' : 'font-manrope-light';
+    const fontClass = locale === 'kh' ? '' : 'font-manrope-light';
 
     return (
         <footer className="mt-10 bg-true-primary">
@@ -59,7 +59,7 @@ const Footer = () => {
                         <div key={title} className="ml-0 md:ml-5">
                             <Link
                                 href={mainLink}
-                                className={`${locale === 'kh' ? 'font-kantumruy font-bold' : 'font-manrope-bold'} text-[15px] text-primary-two hover:underline`}
+                                className={`${locale === 'kh' ? 'font-nokora-bold' : 'font-manrope-bold'} text-[15px] text-primary-two hover:underline`}
                             >
                                 {t(title)}
                             </Link>
@@ -83,7 +83,7 @@ const Footer = () => {
                     {/* Terms Section */}
                     <div>
                         <span
-                            className={`${locale === 'kh' ? 'font-kantumruy font-bold' : 'font-manrope-bold'} text-[15px] text-primary-two hover:underline`}
+                            className={`${locale === 'kh' ? 'font-nokora-bold' : 'font-manrope-bold'} text-[15px] text-primary-two hover:underline`}
                         >
                             {t('Terms & Conditions')}
                         </span>

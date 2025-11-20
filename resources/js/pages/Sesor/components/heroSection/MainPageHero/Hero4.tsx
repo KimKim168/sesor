@@ -5,8 +5,8 @@ const Hero04 = () => {
     const { backgroundFourth, fourthHero, locale } = usePage<any>().props;
 
     // Font classes
-    const fontTitleClass = locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-semi-bold';
-    const fontDescClass = locale === 'kh' ? 'font-kantumruy' : 'font-manrope-semi-bold';
+    const fontTitleClass = locale === 'kh' ? ' font-bold' : 'font-manrope-semi-bold';
+    const fontDescClass = locale === 'kh' ? 'font-bold' : 'font-manrope-semi-bold';
 
     return (
         <div
@@ -21,7 +21,7 @@ const Hero04 = () => {
                     <div className="col-span-2">
                         <div className="flex flex-col py-[16px] text-start text-white md:py-12 md:text-left">
                             {/* Title */}
-                            <h2 className={`text-[25px] leading-snug md:text-[40px] ${fontTitleClass}`}>
+                            <h2 className={`text-[25px] md:text-[40px] ${fontTitleClass}`}>
                                 {locale === 'kh' ? fourthHero?.name_kh || fourthHero?.name : fourthHero?.name}
                             </h2>
 

@@ -1,15 +1,14 @@
 import { Button } from '@/components/ui/button';
 import { styled } from 'styled-components';
 
-const ButtonWithArrow = ({ title = '' }) => {
-  
-
+const ButtonWithArrow = ({ title , locale }:any) => {
+    const fontClass = locale === "kh" ? 'font-semibold' : 'font-manrope-semi-bold';
   return (
     <StyledWrapper>
       <Button
         className="button w-[200px] bg-primary-two px-2 text-[15px]"
       >
-        <span className="label">{title}</span>
+        <span className={`label ${fontClass}`}>{title}</span>
         <span className="iconWrapper">
           <svg
             className="svgIcon"

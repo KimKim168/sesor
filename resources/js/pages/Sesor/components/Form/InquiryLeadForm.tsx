@@ -9,7 +9,7 @@ import useTranslation from '@/hooks/use-translation';
 const InquiryLeadForm = () => {
     const { locale, inquiryLeadFormHeader } = usePage<any>().props;
     const {t} = useTranslation();
-    const fontLabel = locale === 'kh' ? 'font-kantumruy font-semibold' : 'font-manrope-semi-bold';
+    const fontLabel = locale === 'kh' ? 'font-bold' : 'font-manrope-semi-bold';
     const [statusMessage, setStatusMessage] = useState<string | null>(null); // For showing success/error
 
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -41,7 +41,7 @@ const InquiryLeadForm = () => {
         <div id="inquiry-lead-form">
             <div className="section-container mt-10">
                 <h2
-                    className={`${locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-extra-bold'} text-2xl tracking-tight md:text-3xl`}
+                    className={`${locale === 'kh' ? 'font-bold' : 'font-manrope-extra-bold'} text-2xl tracking-tight md:text-3xl`}
                 >
                     {locale === 'kh' ? inquiryLeadFormHeader?.name_kh || inquiryLeadFormHeader?.name : inquiryLeadFormHeader?.name}
                 </h2>
@@ -143,7 +143,7 @@ const InquiryLeadForm = () => {
                                         <button
                                             type="submit"
                                             disabled={processing}
-                                            className={`${locale === 'kh' ? 'font-kantumruy font-bold' : 'font-manrope-bold'} inline-flex h-9 w-[200px] shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-primary-two px-2 py-2 text-[13px] text-primary transition-all outline-none hover:-translate-y-[2px] hover:bg-primary-two md:text-[15px]`}
+                                            className={`${locale === 'kh' ? 'font-bold' : 'font-manrope-bold'} inline-flex h-9 w-[200px] shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-primary-two px-2 py-2 text-[13px] text-primary transition-all outline-none hover:-translate-y-[2px] hover:bg-primary-two md:text-[15px]`}
                                         >
                                             {locale === 'kh' ? 'ដាក់ស្នើ' : 'Submit'}
                                         </button>

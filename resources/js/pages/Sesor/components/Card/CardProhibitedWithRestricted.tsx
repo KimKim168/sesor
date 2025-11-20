@@ -11,8 +11,8 @@ const CardProhibitedWithRestricted = () => {
             <div className="section-container">
                 <div className="text-center">
                     <h2
-                        className={`tracking-tight text-primary text-3xl ${
-                            isKh ? "font-kantumruy font-extrabold" : "font-manrope-extra-bold"
+                        className={`text-primary text-3xl ${
+                            isKh ? "font-bold" : "font-manrope-extra-bold"
                         }`}
                     >
                         {isKh
@@ -35,7 +35,7 @@ const CardProhibitedWithRestricted = () => {
                                 <h3
                                     className={`mt-1 text-[15px] max-w-[200px] ${
                                         isKh
-                                            ? "font-kantumruy"
+                                            ? ""
                                             : "font-manrope-regular"
                                     }`}
                                 >
@@ -53,8 +53,8 @@ const CardProhibitedWithRestricted = () => {
             <div className="section-container mt-10">
                 <div className="text-center">
                     <h2
-                        className={`tracking-tight text-primary text-3xl ${
-                            isKh ? "font-kantumruy font-extrabold" : "font-manrope-extra-bold"
+                        className={`text-primary text-3xl ${
+                            isKh ? "font-bold" : "font-manrope-extra-bold"
                         }`}
                     >
                         {isKh
@@ -77,7 +77,7 @@ const CardProhibitedWithRestricted = () => {
                                 <h3
                                     className={`mt-1 text-[15px] max-w-[200px] ${
                                         isKh
-                                            ? "font-kantumruy"
+                                            ? ""
                                             : "font-manrope-regular"
                                     }`}
                                 >

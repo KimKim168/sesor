@@ -9,7 +9,7 @@ import useTranslation from '@/hooks/use-translation';
 const Navbar02Page = () => {
     const { locale, website_info } = usePage().props;
     const { t } = useTranslation();
-    const fontClass = locale === 'kh' ? 'font-kantumruy font-bold' : 'font-manrope-bold';
+    const fontClass = locale === 'kh' ? 'font-bold' : 'font-manrope-bold';
     return (
         <div>
             <nav className="section-container h-20 border-b bg-background md:h-24">

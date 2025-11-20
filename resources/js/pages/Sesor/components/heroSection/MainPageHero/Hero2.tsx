@@ -6,10 +6,10 @@ const Hero02 = () => {
 
     // Dynamic font based on language
     const fontTitleClass =
-        locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-extra-bold';
+        locale === 'kh' ? 'font-bold' : 'font-manrope-extra-bold';
 
     const fontDescClass =
-        locale === 'kh' ? 'font-kantumruy' : 'font-manrope-regular';
+        locale === 'kh' ? '' : 'font-manrope-regular';
 
     return (
         <div
@@ -19,7 +19,7 @@ const Hero02 = () => {
             <div>
                 {/*  Translate name */}
                 <h1
-                    className={`max-w-[17ch] text-4xl leading-[1.2]! tracking-tighter text-primary md:text-[85px] ${fontTitleClass}`}
+                    className={`max-w-[17ch] text-4xl text-primary md:text-[85px] ${fontTitleClass}`}
                 >
                     {locale === 'kh'
                         ? secondHero?.name_kh || secondHero?.name

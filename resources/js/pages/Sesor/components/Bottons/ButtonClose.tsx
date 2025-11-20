@@ -1,8 +1,7 @@
 import { styled } from 'styled-components';
 
 const ButtonClose = () => {
-  
-  
+
   return (
     <StyledWrapper>
       <button

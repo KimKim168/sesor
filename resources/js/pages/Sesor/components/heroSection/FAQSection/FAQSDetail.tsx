@@ -4,7 +4,7 @@ import ButtonClose from '../../Bottons/ButtonClose';
 const FAQSDetail = ({ faqs, locale }:any) => {
     const [hoveredItem, setHoveredItem] = useState<string | null>(null);
     const [showFAQ, setShowFAQ] = useState(true);
-    const fontClass = locale === "kh" ? 'font-kantumruy font-semibold' : 'font-manrope-semi-bold';
+    const fontClass = locale === "kh" ? 'font-semibold' : 'font-manrope-semi-bold';
 
     return (
         <div className="relative w-full bg-[#93288D] bg-cover bg-center">

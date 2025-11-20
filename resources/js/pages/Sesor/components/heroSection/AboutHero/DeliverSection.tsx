@@ -8,8 +8,8 @@ const DeliverSection = () => {
       <div className="section-container">
         {/* Title */}
         <h2
-          className={`mt-10 mb-5 text-center text-3xl tracking-tight text-primary md:mt-15 md:mb-5 ${
-            locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-extra-bold'
+          className={`mt-10 mb-5 text-center text-3xl text-primary md:mt-15 md:mb-5 ${
+            locale === 'kh' ? 'font-bold' : 'font-manrope-extra-bold'
           }`}
         >
           {locale === 'kh' ? whoWeDeliverFor?.name_kh || whoWeDeliverFor?.name : whoWeDeliverFor?.name}
@@ -19,7 +19,7 @@ const DeliverSection = () => {
           {/* Description */}
           <div
             className={`flex flex-col space-y-4 text-[18px] lg:text-[25px] ${
-              locale === 'kh' ? 'font-kantumruy font-medium' : 'font-manrope-extra-bold'
+              locale === 'kh' ? '' : 'font-manrope-extra-bold'
             }`}
             dangerouslySetInnerHTML={{
               __html:

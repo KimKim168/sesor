@@ -4,7 +4,7 @@ const QRCard = ({ title, qr, store, link }: any) => {
     const { locale } = usePage<any>().props;
 
     const fontTitleClass =
-        locale === "kh" ? "font-kantumruy font-semibold" : "font-manrope-semi-bold";
+        locale === "kh" ? "font-semibold" : "font-manrope-semi-bold";
 
     return (
         <div className="flex flex-col items-center">

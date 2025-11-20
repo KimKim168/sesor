@@ -14,7 +14,7 @@ import React, { ComponentProps } from 'react';
 export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => {
     const { t } = useTranslation();
     const { locale } = usePage().props;
-    const fontClass = locale === 'kh' ? 'font-kantumruy font-bold' : 'font-manrope-bold';
+    const fontClass = locale === 'kh' ? 'font-bold' : 'font-manrope-bold';
     return (
         <NavigationMenu {...props} viewport={false}>
             <NavigationMenuList className="gap-1 space-x-0 text-sm">
@@ -23,7 +23,7 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => {
                     <NavigationMenuTrigger className={`${fontClass} text-[15px] text-primary`}>
                         <a href="/about_us">{t('About Us')}</a>
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className="z-10 group-data-[viewport=false]/navigation-menu:bg-true-primary">
+                    <NavigationMenuContent className={`z-10 group-data-[viewport=false]/navigation-menu:bg-true-primary`}>
                         <ul className="grid w-[200px] md:grid-cols-1">
                             {[
                                 {
@@ -51,7 +51,7 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => {
                                     id: 'about_us#career',
                                 },
                             ].map((item) => (
-                                <ListItem key={item.title} title={item.title} href={`${item.id}`} className="py-1">
+                                <ListItem key={item.title} title={item.title} href={`${item.id}`} className={`py-1 ${locale === 'kh' ? '' : 'font-manrope-light'} `}>
                                     {t(item.title)}
                                 </ListItem>
                             ))}
@@ -64,7 +64,7 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => {
                     <NavigationMenuTrigger className={`${fontClass} text-[15px] text-primary`}>
                         <a href="/service">{t('Services')}</a>
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className="z-10 group-data-[viewport=false]/navigation-menu:bg-true-primary">
+                    <NavigationMenuContent className={`z-10 group-data-[viewport=false]/navigation-menu:bg-true-primary`}>
                         <ul className="grid w-[200px] md:grid-cols-1">
                             {[
                                 {
@@ -92,7 +92,7 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => {
                                     id: 'service#benefits',
                                 },
                             ].map((item) => (
-                                <ListItem key={item.title} title={item.title} href={`${item.id}`} className="py-1">
+                                <ListItem key={item.title} title={item.title} href={`${item.id}`} className={`py-1 ${locale === 'kh' ? '' : 'font-manrope-light'} `}>
                                     {t(item.title)}
                                 </ListItem>
                             ))}
@@ -106,7 +106,7 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => {
                         {' '}
                         <Link href="/#contact-detail">{t("Contact Us")}</Link>
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className="z-10 group-data-[viewport=false]/navigation-menu:bg-true-primary">
+                    <NavigationMenuContent className={`z-10 group-data-[viewport=false]/navigation-menu:bg-true-primary`}>
                         <ul className="grid w-[200px] md:grid-cols-1">
                             {[
                                 {
@@ -114,7 +114,7 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => {
                                     id: '#contact-detail',
                                 },
                             ].map((item) => (
-                                <ListItem key={item.title} title={item.title} href={`/${item.id}`} className="py-1">
+                                <ListItem key={item.title} title={item.title} href={`/${item.id}`} className={`py-1 ${locale === 'kh' ? '' : 'font-manrope-light'} `}>
                                     {t(item.title)}
                                 </ListItem>
                             ))}
@@ -139,7 +139,7 @@ const ListItem = React.forwardRef<React.ElementRef<typeof Link>, React.Component
                         )}
                         {...props}
                     >
-                        <p className="line-clamp-2 font-manrope-light text-sm leading-snug text-white">{children}</p>
+                        <p className="line-clamp-2 text-sm text-white">{children}</p>
                     </Link>
                 </NavigationMenuLink>
             </li>

@@ -19,7 +19,7 @@ const DriverAndCustomerServiceSection = () => {
       <h2
         id="our-team"
         className={`mt-10 md:mt-15 mb-5 md:mb-5 text-center tracking-tight text-primary text-3xl ${
-          locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-extra-bold'
+          locale === 'kh' ? 'font-bold' : 'font-manrope-extra-bold'
         }`}
       >
         {locale === 'kh' ? parent.name_kh || parent.name : parent.name}
@@ -46,15 +46,15 @@ const DriverAndCustomerServiceSection = () => {
             <div className="max-w-2xl text-white">
               <h2
                 className={`text-[25px] text-center text-primary-two md:text-[40px] ${
-                  locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-extra-bold'
+                  locale === 'kh' ? 'font-bold' : 'font-manrope-extra-bold'
                 }`}
               >
                 {locale === 'kh' ? driver?.name_kh || driver?.name : driver?.name}
               </h2>
 
               <div
-                className={`text-[18px] leading-[1.4] md:text-[27px] whitespace-pre-line ${
-                  locale === 'kh' ? 'font-kantumruy' : 'font-manrope-regular'
+                className={`text-[18px] md:text-[27px] whitespace-pre-line ${
+                  locale === 'kh' ? '' : 'font-manrope-regular'
                 }`}
                 dangerouslySetInnerHTML={{
                   __html:
@@ -81,7 +81,7 @@ const DriverAndCustomerServiceSection = () => {
             <div className="max-w-2xl text-white px-4 lg:px-0">
               <h2
                 className={`text-[25px] text-center text-primary-two md:text-[40px] ${
-                  locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-extra-bold'
+                  locale === 'kh' ? 'font-bold' : 'font-manrope-extra-bold'
                 }`}
               >
                 {locale === 'kh'
@@ -91,7 +91,7 @@ const DriverAndCustomerServiceSection = () => {
 
               <div
                 className={`text-[18px] leading-[1.4] md:text-[27px] whitespace-pre-line ${
-                  locale === 'kh' ? 'font-kantumruy' : 'font-manrope-regular'
+                  locale === 'kh' ? '' : 'font-manrope-regular'
                 }`}
                 dangerouslySetInnerHTML={{
                   __html:

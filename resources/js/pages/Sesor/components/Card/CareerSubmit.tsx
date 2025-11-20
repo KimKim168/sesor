@@ -10,7 +10,7 @@ import useTranslation from '@/hooks/use-translation';
 const CareerSubmit = ({ item }: { item: any }) => {
     const { locale } = usePage<any>().props;
     const { t } = useTranslation();
-    const fontLabel = locale === 'kh' ? 'font-kantumruy' : 'font-manrope-regular';
+    const fontLabel = locale === 'kh' ? '' : 'font-manrope-regular';
 
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
@@ -113,7 +113,7 @@ const CareerSubmit = ({ item }: { item: any }) => {
                             <div className="col-span-2 mt-4 flex flex-col items-center">
                                 <label
                                     htmlFor="file"
-                                    className="min-w-[150px] cursor-pointer rounded-full bg-white px-4 py-1.5 text-center font-manrope-regular text-primary hover:bg-gray-200"
+                                    className={`min-w-[150px] cursor-pointer rounded-full bg-white px-4 py-1.5 text-center text-primary hover:bg-gray-200`}
                                 >
                                     {data.file ? data.file.name : t('Attach CV')}
                                 </label>
@@ -127,7 +127,7 @@ const CareerSubmit = ({ item }: { item: any }) => {
                                 <Button
                                     type="submit"
                                     disabled={loading || processing}
-                                    className="rounded-full bg-white px-8 py-2 font-manrope-regular text-primary hover:bg-gray-200 disabled:opacity-50"
+                                    className="rounded-full bg-white px-8 py-2 text-primary hover:bg-gray-200 disabled:opacity-50"
                                 >
                                     {loading || processing ? <Loader /> : locale === 'kh' ? 'ដាក់ស្នើ' : 'Submit'}
                                 </Button>

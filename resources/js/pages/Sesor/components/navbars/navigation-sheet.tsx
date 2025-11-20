@@ -8,7 +8,7 @@ import useTranslation from '@/hooks/use-translation';
 export const NavigationSheet = () => {
     const { t } = useTranslation();
     const { locale } = usePage().props;
-    const fontClass = locale === 'kh' ? 'font-kantumruy font-bold' : 'font-manrope-bold';
+    const fontClass = locale === 'kh' ? 'font-bold' : 'font-manrope-bold';
     return (
         <Sheet>
             <SheetTrigger asChild>
@@ -52,7 +52,7 @@ export const NavigationSheet = () => {
                                 },
                             ].map((item) => (
                                 <li key={item.title}>
-                                    <Link href={`${item.id}`} className="flex items-center gap-2">
+                                    <Link href={`${item.id}`} className={`${locale === 'kh' ? '' : ''} flex items-center gap-2`}>
                                         {t(item.title)}
                                     </Link>
                                 </li>
@@ -89,7 +89,7 @@ export const NavigationSheet = () => {
                                 },
                             ].map((item) => (
                                 <li key={item.title}>
-                                    <Link href={`${item.id}`} className="flex items-center gap-2">
+                                    <Link href={`${item.id}`} className="flex items-center gap-2 ">
                                         {t(item.title)}
                                     </Link>
                                 </li>

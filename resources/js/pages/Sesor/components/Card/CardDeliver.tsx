@@ -5,12 +5,12 @@ const CardDeliver = () => {
 
     const children = whatWeDeliver?.[0]?.children ?? [];
 
-    const fontClass = locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-extra-bold';
+    const fontClass = locale === 'kh' ? 'font-bold' : 'font-manrope-extra-bold';
 
     return (
         <div id="what-we-deliver" className="section-container mt-10">
             <div className="text-center">
-                <h2 className={`${fontClass} text-3xl tracking-tight text-primary`}>
+                <h2 className={`${fontClass} text-3xl text-primary`}>
                     {locale === 'kh'
                         ? whatWeDeliver?.[0]?.name_kh || whatWeDeliver?.[0]?.name
                         : whatWeDeliver?.[0]?.name}
@@ -27,11 +27,11 @@ const CardDeliver = () => {
                                 />
                             </div>
 
-                            <h3 className={`mt-1.5 ${locale === 'kh' ? 'font-kantumruy font-semibold' : 'font-manrope-semi-bold'} text-[22px]`}>
+                            <h3 className={`mt-1.5 ${locale === 'kh' ? 'font-bold' : 'font-manrope-semi-bold'} text-[22px]`}>
                                 {locale === 'kh' ? item.name_kh || item.name : item.name}
                             </h3>
 
-                            <p className={`mt-1 max-w-[300px] ${locale === 'kh' ? 'font-kantumruy' : 'font-manrope-regular'} text-[15px]`}>
+                            <p className={`mt-1 max-w-[300px] ${locale === 'kh' ? '' : 'font-manrope-regular'} text-[15px]`}>
                                 {locale === 'kh'
                                     ? item.short_description_kh || item.short_description
                                     : item.short_description}

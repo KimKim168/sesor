@@ -9,7 +9,7 @@ const MissionHero = () => {
         <div key={item.id}>
           <h2
             className={`mt-10 mb-5 text-center text-3xl tracking-tight text-primary md:mt-15 md:mb-5 ${
-              locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-extra-bold'
+              locale === 'kh' ? 'font-bold' : 'font-manrope-extra-bold'
             }`}
           >
             {locale === 'kh' ? item?.name_kh || item?.name : item?.name}
@@ -35,7 +35,7 @@ const MissionHero = () => {
                     <h2
                       className={`text-[25px] text-primary-two md:text-[40px] ${
                         locale === 'kh'
-                          ? 'font-kantumruy font-extrabold'
+                          ? 'font-bold'
                           : 'font-manrope-extra-bold'
                       }`}
                     >
@@ -46,7 +46,7 @@ const MissionHero = () => {
                     <p
                       className={`mt-2 text-[18px] leading-relaxed md:text-[27px] ${
                         locale === 'kh'
-                          ? 'font-kantumruy'
+                          ? ''
                           : 'font-manrope-regular'
                       }`}
                       dangerouslySetInnerHTML={{

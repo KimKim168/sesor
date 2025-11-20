@@ -5,8 +5,8 @@ const Hero03 = () => {
     const { backgroundThird, thirdHero, locale } = usePage<any>().props;
 
     // Font classes
-    const fontTitleClass = locale === 'kh' ? 'font-kantumruy font-extrabold' : 'font-manrope-semi-bold';
-    const fontDescClass = locale === 'kh' ? 'font-kantumruy mt-2' : 'font-manrope-semi-bold';
+    const fontTitleClass = locale === 'kh' ? 'font-bold' : 'font-manrope-semi-bold';
+    const fontDescClass = locale === 'kh' ? 'font-bold mt-2' : 'font-manrope-semi-bold';
 
     return (
         <div

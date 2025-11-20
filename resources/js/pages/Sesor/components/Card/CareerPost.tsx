@@ -6,13 +6,13 @@ import useTranslation from '@/hooks/use-translation';
 const CareerPost = () => {
     const { career, locale } = usePage().props;
     const {t} = useTranslation();
-    const fontClass = locale === 'kh' ? 'kantumruy font-extrabold' : 'font-manrope-extra-bold';
+    const fontClass = locale === 'kh' ? 'font-bold' : 'font-manrope-extra-bold';
     // Ensure exactly 4 cards
     const cards = Array.from({ length: 4 }, (_, idx) => career?.[idx] || null);
 
     return (
         <div>
-            <h2 id="career" className={`${fontClass} mt-7.5 mb-3.5 text-center text-3xl tracking-tight text-primary md:mt-15 md:mb-5`}>
+            <h2 id="career" className={`${fontClass} mt-7.5 mb-3.5 text-center text-3xl text-primary md:mt-15 md:mb-5`}>
                 {t("Career")}
             </h2>
 
@@ -26,7 +26,7 @@ const CareerPost = () => {
                             <CardContent className="px-3 pb-4">
                                 <h3
                                     className={`${
-                                        locale === 'kh' ? 'font-kantumruy font-semibold' : 'font-manrope-semi-bold'
+                                        locale === 'kh' ? 'font-bold' : 'font-manrope-semi-bold'
                                     } mt-2 text-[16px] text-primary-two`}
                                 >
                                     {locale === 'kh' ? item.name_kh || item.name : item.name}
@@ -34,8 +34,8 @@ const CareerPost = () => {
 
                                 <p
                                     className={`${
-                                        locale === 'kh' ? 'font-kantumruy text-[12px] font-extralight' : 'font-manrope-extra-light text-[13px]'
-                                    } text-white`}
+                                        locale === 'kh' ? '' : 'font-manrope-extra-light '
+                                    } text-white text-[13px]`}
                                 >
                                     {locale === 'kh' ? item.short_description_kh || item.short_description : item.short_description}
                                 </p>
@@ -46,7 +46,7 @@ const CareerPost = () => {
                     ) : (
                         <div
                             key={`placeholder-${index}`}
-                            className="flex h-full items-center border-primary/20 border justify-center bg-gray-100 text-center text-xl font-manrope-extra-bold text-gray-400"
+                            className="flex h-full items-center border-primary/20 border justify-center bg-gray-100 text-center text-xl font-extrabold text-gray-400"
                         >
                             Coming Soon
                         </div>

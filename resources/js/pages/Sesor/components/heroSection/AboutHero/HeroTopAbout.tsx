@@ -3,7 +3,7 @@ import { usePage } from '@inertiajs/react';
 
 const HeroTopAbout = () => {
   const { whoWeAre, locale } = usePage<any>().props;
-  const fontClass = locale === 'kh' ? 'font-kantumruy font-bold' : 'font-manrope-extra-bold';
+  const fontClass = locale === 'kh' ? 'font-bold' : 'font-manrope-extra-bold';
 
   return (
     <div className="relative w-full max-w-[2000px] mx-auto" id="who-we-are">
@@ -36,7 +36,7 @@ const HeroTopAbout = () => {
 
             <div
               className={`md:mt-4 space-y-5 text-base leading-relaxed md:text-2xl ${
-                locale === 'kh' ? 'font-kantumruy' : 'font-manrope-regular'
+                locale === 'kh' ? '' : 'font-manrope-regular'
               }`}
               dangerouslySetInnerHTML={{
                 __html:

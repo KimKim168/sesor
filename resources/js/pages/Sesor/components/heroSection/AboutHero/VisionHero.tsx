@@ -3,9 +3,9 @@ import { usePage } from '@inertiajs/react';
 const VisionHero = () => {
     const { vision, locale } = usePage<any>().props;
     const fontClassTitle =
-        locale === 'kh' ? 'font-kantumruy font-bold' : 'font-manrope-extra-bold';
+        locale === 'kh' ? 'font-bold' : 'font-manrope-extra-bold';
     const fontClassText =
-        locale === 'kh' ? 'font-kantumruy' : 'font-manrope-regular';
+        locale === 'kh' ? '' : 'font-manrope-regular';
 
     return (
         <div id="vision-mission-core-values">
@@ -13,7 +13,7 @@ const VisionHero = () => {
                 <div key={visionMain.id}>
                     {/* Vision Main Title */}
                     <h2
-                        className={`mt-10 mb-5 text-center text-3xl tracking-tight text-primary md:mt-15 md:mb-5 ${fontClassTitle}`}
+                        className={`mt-10 mb-5  text-center text-3xl text-primary md:mt-15 md:mb-5 ${fontClassTitle}`}
                     >
                         {locale === 'kh'
                             ? visionMain?.name_kh || visionMain?.name
@@ -55,7 +55,7 @@ const VisionHero = () => {
                                                     : subItem?.name}
                                             </h2>
                                             <p
-                                                className={`mt-2 text-[18px] leading-relaxed md:text-[27px] ${fontClassText}`}
+                                                className={`mt-2 text-[18px] md:text-[27px] ${fontClassText}`}
                                                 dangerouslySetInnerHTML={{
                                                     __html:
                                                         locale === 'kh'

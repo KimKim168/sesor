@@ -85,6 +85,94 @@
     src: url('/assets/fonts/KantumruyPro-Italic-VariableFont_wght.ttf') format('truetype');
 }
 
+/* English font */
+
+/* Khmer font */
+@font-face {
+    font-family: 'NokoraRegular';
+    src: url('/assets/fonts/SesorFonts/KhmerFont/Nokora-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NokoraBold';
+    src: url('/assets/fonts/SesorFonts/KhmerFont/Nokora-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FontSesorKhmer';
+    src: url('/assets/fonts/SesorFonts/KhmerFont/Nokora-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FontSesorKhmer';
+    src: url('/assets/fonts/SesorFonts/KhmerFont/Nokora-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'FontSesorKhmer';
+    src: url('/assets/fonts/SesorFonts/KhmerFont/Nokora-Bold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ManropeFontSesorEng';
+    src: url('/assets/fonts/SesorFonts/MainFonts/Manrope-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ManropeFontSesorEng';
+    src: url('/assets/fonts/SesorFonts/MainFonts/Manrope-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ManropeFontSesorEng';
+    src: url('/assets/fonts/SesorFonts/MainFonts/Manrope-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ManropeFontSesorEng';
+    src: url('/assets/fonts/SesorFonts/MainFonts/Manrope-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ManropeFontSesorEng';
+    src: url('/assets/fonts/SesorFonts/MainFonts/Manrope-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ManropeFontSesorEng';
+    src: url('/assets/fonts/SesorFonts/MainFonts/Manrope-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ManropeFontSesorEng';
+    src: url('/assets/fonts/SesorFonts/MainFonts/Manrope-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+
+/* End Khmer font */
+
 /* End Sesor Fonts */
 
 /* Scroll Bar Custom */
@@ -107,15 +195,20 @@
 .PhotoView-Slider__BannerWrap {
     background-color: transparent !important;
 }
+
 .PhotoView-Slider__toolbarIcon {
     background-color: rgba(0, 0, 0, 0.65);
 }
+
 .PhotoView-Slider__Counter {
     background-color: rgba(0, 0, 0, 0.65);
     height: 44px;
-    display: flex !important; /* enables flexbox layout */
-    align-items: center !important; /* vertical center */
-    justify-content: center !important; /* horizontal center */
+    display: flex !important;
+    /* enables flexbox layout */
+    align-items: center !important;
+    /* vertical center */
+    justify-content: center !important;
+    /* horizontal center */
 }
 
 /* Animate Border CardHoverGradient2 */
@@ -126,11 +219,13 @@
     animation: none;
     mix-blend-mode: normal;
 }
+
 /* End Smooth Animate Dark Mode Switch */
 @theme {
     --animate-background: background-move ease infinite;
 
     @keyframes background-move {
+
         0%,
         100% {
             background-position: 0% 50%;
@@ -146,13 +241,21 @@
 /* @custom-variant dark (&:is(.dark *)); */
 
 @theme {
-    --font-sans:
-        'KantumruyPro', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    --font-nokora:
+        'NokoraRegular', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
+    --font-sesor-khmer:
+        'FontSesorKhmer', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
+    --font-sesor-english:
+        'FontSesorKhmer', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
         'Noto Color Emoji';
 
     /* Sesor Font */
     --font-luckiest-guy-regular: 'LuckiestGuyRegular';
     --font-proxima-nova-regular: 'ProximaNovaRegular';
+    --font-nokora-regular: 'NokoraRegular';
+    --font-nokora-bold: 'NokoraBold';
     --font-manrope-regular: 'ManropeRegular';
     --font-manrope-light: 'ManropeLight';
     --font-manrope-bold: 'ManropeBold';
@@ -163,8 +266,8 @@
     --font-montserrat-black: 'MontserratBlack';
     --font-montserrat-extra-bold: 'MontserratExtraBold';
     --font-nokora-black: 'NokoraBlack';
-    --font-kantumruy: 'KantumruyPro';
-    --font-kantumruy-italic: 'KantumruyItalic';
+    --font-nokora-regular: 'KantumruyPro';
+    --font-nokora-regular-italic: 'KantumruyItalic';
 
     /* End Sesor Font */
 

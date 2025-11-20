@@ -5,11 +5,11 @@ const Hero = () => {
     const { backgroundSecond, firstHero, playStoreAndroid, appStoreIOS, locale } = usePage<any>().props;
 
     const fontTitleClass = locale === 'kh'
-        ? 'font-kantumruy font-extrabold'
+        ? 'font-bold'
         : 'font-manrope-extra-bold';
 
     const fontDescClass = locale === 'kh'
-        ? 'font-kantumruy'
+        ? ''
         : 'font-manrope-medium';
 
     return (
@@ -33,7 +33,7 @@ const Hero = () => {
                                 alt="SESOR Logo"
                                 className="aspect-square w-12 rounded-xl object-cover md:w-14"
                             />
-                            <h2 className={`text-[18px] leading-snug md:text-[20px] ${fontTitleClass}`}>
+                            <h2 className={`text-[18px] md:text-[20px] ${fontTitleClass}`}>
                                 {locale === 'kh'
                                     ? (firstHero?.name_kh ?? firstHero?.name)
                                     : firstHero?.name}

@@ -5,12 +5,12 @@ import useTranslation from '@/hooks/use-translation';
 const Contact = () => {
     const { media_links, website_info, app_url, contact_detail, locale } = usePage<any>().props;
     const {t} = useTranslation();
-    const fontClass1 = locale === "kh" ? 'font-kantumruy font-extrabold' : 'font-manrope-extra-bold';
-    const fontClass = locale === "kh" ? 'font-kantumruy' : 'font-manrope-semi-bold';
+    const fontClass1 = locale === "kh" ? 'font-bold' : 'font-manrope-extra-bold';
+    const fontClass = locale === "kh" ? 'font-bold' : 'font-manrope-semi-bold';
     return (
         <div id="contact-detail" className="mt-5 md:mt-10">
             <div className="section-container">
-                <h2 className={`${fontClass1} text-center text-[20px] tracking-tight text-primary md:text-3xl`}>{t("Contact Detail")}</h2>
+                <h2 className={`${fontClass1} text-center text-[20px] text-primary md:text-3xl`}>{t("Contact Detail")}</h2>
 
                 <div className="mt-2.5 grid gap-5 md:mt-5 md:gap-10 lg:grid-cols-2">
                     {/* Google Map */}
@@ -25,7 +25,7 @@ const Contact = () => {
                             <div>
                                 <h3 className={`${fontClass} text-[17px] text-[#231F20] md:text-xl`}>{t("Call Us")}</h3>
                                 <p
-                                    className="font-manrope-regular text-[12px] whitespace-pre-line text-[#231F20] md:text-[15px]"
+                                    className={`${locale === 'kh' ? '' : 'font-manrope-regular'} text-[12px] whitespace-pre-line text-[#231F20] md:text-[15px]`}
                                     dangerouslySetInnerHTML={{ __html: website_info?.phone }}
                                 />
                             </div>
@@ -37,7 +37,7 @@ const Contact = () => {
                             <div>
                                 <h3 className={`${fontClass} text-[17px] text-[#231F20] md:text-xl`}>{t('Email Us')}</h3>
                                 <p
-                                    className="font-manrope-regular text-[12px] text-[#231F20] md:text-[15px]"
+                                    className={`${locale === 'kh' ? '' : 'font-manrope-regular'} text-[12px] whitespace-pre-line text-[#231F20] md:text-[15px]`}
                                     dangerouslySetInnerHTML={{ __html: website_info?.email }}
                                 />
                             </div>
@@ -50,7 +50,7 @@ const Contact = () => {
                             <div>
                                 <h3 className={`${fontClass} text-[17px] text-[#231F20] md:text-xl`}>{t("Website")}</h3>
                                 <p
-                                    className="font-manrope-regular text-[12px] text-[#231F20] md:text-[15px]"
+                                    className={`${locale === 'kh' ? '' : 'font-manrope-regular'} text-[12px] whitespace-pre-line text-[#231F20] md:text-[15px]`}
                                     dangerouslySetInnerHTML={{ __html: app_url }}
                                 />
                             </div>
@@ -63,7 +63,7 @@ const Contact = () => {
                             <div>
                                 <h3 className={`${fontClass} text-[17px] text-[#231F20] md:text-xl`}>{t("Address")}</h3>
                                 <p
-                                    className="font-manrope-regular text-[12px] text-[#231F20] md:text-[15px]"
+                                    className={`${locale === 'kh' ? '' : 'font-manrope-regular'} text-[12px] whitespace-pre-line text-[#231F20] md:text-[15px]`}
                                     dangerouslySetInnerHTML={{
                                         __html: locale === 'kh' ? website_info?.address_kh || website_info?.address : website_info?.address,
                                     }}

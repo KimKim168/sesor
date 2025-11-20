@@ -10,7 +10,7 @@ const CardBenefits = () => {
             <div className="text-center">
                 <h2
                     className={`text-3xl tracking-tight text-primary ${
-                        isKh ? "font-kantumruy font-extrabold" : "font-manrope-extra-bold"
+                        isKh ? "font-bold" : "font-manrope-extra-bold"
                     }`}
                 >
                     {isKh ? benefit?.name_kh || benefit?.name : benefit?.name}
@@ -36,7 +36,7 @@ const CardBenefits = () => {
                             <h3
                                 className={`mt-1 text-[15px] text-white ${
                                     isKh
-                                        ? "font-kantumruy font-extrabold"
+                                        ? "font-bold"
                                         : "font-manrope-extra-bold"
                                 }`}
                             >
@@ -46,7 +46,7 @@ const CardBenefits = () => {
                             <p
                                 className={`mt-1 text-[10px] text-white ${
                                     isKh
-                                        ? "font-kantumruy"
+                                        ? ""
                                         : "font-manrope-regular"
                                 }`}
                             >

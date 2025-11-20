@@ -5,7 +5,7 @@ import { Languages } from 'lucide-react';
 export function LanguageSwitcher() {
     const { locale } = usePage().props; 
     const { t } = useTranslation();
-    const fontClass = locale === 'kh' ? 'font-kantumruy font-bold' : 'font-manrope-bold';
+    const fontClass = locale === 'kh' ? 'font-bold' : 'font-manrope-bold';
     return (
         <Select
             defaultValue={locale || 'en'} // fallback English

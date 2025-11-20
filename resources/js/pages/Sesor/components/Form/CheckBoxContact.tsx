@@ -15,7 +15,7 @@ export default function CheckBoxContact({ value, onChange }: CheckBoxContactProp
     { name: "Email", label: locale === "kh" ? "អ៊ីមែល" : "Email" },
   ];
 
-  const fontClass = locale === "kh" ? "font-kantumruy" : "font-manrope-medium";
+  const fontClass = locale === "kh" ? "" : "font-manrope-medium";
 
   return (
     <div className="mt-2 flex flex-col items-start gap-4">

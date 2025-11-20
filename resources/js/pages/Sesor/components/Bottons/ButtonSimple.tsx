@@ -8,7 +8,7 @@ const ButtonSimple = ({ title, link, targetBlank }: any) => {
     const isExternal = link.startsWith('http');
 
     // 🔹 Dynamic font based on locale
-    const fontClass = locale === 'kh' ? 'font-kantumruy font-bold' : 'font-manrope-bold';
+    const fontClass = locale === 'kh' ? 'font-bold' : 'font-manrope-bold';
 
     return (
         <StyledWrapper>
