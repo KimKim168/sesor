@@ -19,7 +19,7 @@ const DeliverSection = () => {
           {/* Description */}
           <div
             className={`flex flex-col space-y-4 text-[18px] lg:text-[25px] ${
-              locale === 'kh' ? '' : 'font-manrope-extra-bold'
+              locale === 'kh' ? 'font-sesor-khmer' : 'font-manrope-extra-bold'
             }`}
             dangerouslySetInnerHTML={{
               __html:
